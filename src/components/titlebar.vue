@@ -1,7 +1,5 @@
 <template lang="html">
-  <div class="">
 
-  </div>
 </template>
 
 <script>
@@ -9,5 +7,11 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="less">
+.title{
+  position:fixed;
+  top:0;
+  left: 0;
+  width:100%;
+}
 </style>
