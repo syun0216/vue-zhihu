@@ -16,16 +16,25 @@
       <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+      <li><button @click='getData'>click get data</button></li>
     </ul>
   </div>
 </template>
 
 <script>
+import api from './../api/index';
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods:{
+    getData(){
+      api.getNews().then(function(data){
+        console.log(data);
+      })
     }
   }
 }
