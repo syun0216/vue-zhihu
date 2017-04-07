@@ -16,6 +16,7 @@
     "axios": "^0.16.0",
     "babel-runtime": "^6.23.0",
     "vue": "^2.2.2",
+    "vue-lazyload-img": "^0.1.6",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1",
     "vux": "^2.1.1-rc.14"
