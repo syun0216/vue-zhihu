@@ -34,6 +34,24 @@ export default {
     demo01_onIndexChange (index) {
       this.demo01_index = index
     },
+  },
+  props:{
+    swiperData:{
+      default:baseList,
+      type:Array
+    }
+  },
+  created(){
+    let _list = [];
+    this._props.swiperData.map((val,idx) => {
+      let _obj = {
+        url:'javascript',
+        img:val.image,
+        title:val.title
+      };
+      _list.push(_obj);
+    })
+    this.demo01_list = _list;i
   }
 }
 </script>

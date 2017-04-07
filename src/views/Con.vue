@@ -1,7 +1,11 @@
 <template lang="html">
   <div class="">
     <v-loading v-if="newsContent==null"></v-loading>
-    <v-title-bar :content="topTitle"></v-title-bar>
+    <v-title-bar v-if="newsContent != null" :content="topTitle" :shareUrl="newsContent.share_url"></v-title-bar>
+    <v-content>
+      <div v-html="newsContent.body">
+      </div>
+    </v-content>
   </div>
 </template>
 
@@ -10,7 +14,6 @@ import api from './../api/index';
 export default {
   data(){
     return {
-      _content:"新闻",
       newsContent:null,
       topTitle:null
     }
@@ -31,4 +34,5 @@ export default {
 </script>
 
 <style lang="css">
+
 </style>
