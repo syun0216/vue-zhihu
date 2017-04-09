@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-      <Swiper :list="demo01_list" v-model="demo01_index" @on-index-change="demo01_onIndexChange"></Swiper>
+      <Swiper v-if="demo01_list != null" :list="demo01_list" v-model="demo01_index" @on-index-change="demo01_onIndexChange"></Swiper>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   data(){
     return {
-      demo01_list:baseList,
+      demo01_list:null,
       demo01_index: 0,
     }
   },
@@ -34,6 +34,18 @@ export default {
     demo01_onIndexChange (index) {
       this.demo01_index = index
     },
+    setSwiperData(){
+      let _list = [];
+      this._props.swiperData.map((val,idx) => {
+        let _obj = {
+          url:'javascript',
+          img:"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl="+val.image,
+          title:val.title
+        };
+        _list.push(_obj);
+      })
+      this.demo01_list = _list;
+    }
   },
   props:{
     swiperData:{
@@ -41,17 +53,8 @@ export default {
       type:Array
     }
   },
-  created(){
-    let _list = [];
-    this._props.swiperData.map((val,idx) => {
-      let _obj = {
-        url:'javascript',
-        img:val.image,
-        title:val.title
-      };
-      _list.push(_obj);
-    })
-    this.demo01_list = _list;i
+  mounted(){
+    this.setSwiperData();
   }
 }
 </script>

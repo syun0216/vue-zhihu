@@ -2,7 +2,10 @@
   <div class="">
     <v-loading v-if="newsContent==null"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="topTitle" :shareUrl="newsContent.share_url"></v-title-bar>
-    <v-content>
+    <v-content v-if="newsContent != null">
+      <div class="img_div">
+        <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+newsContent.image" alt="">
+      </div>
       <div v-html="newsContent.body">
       </div>
     </v-content>
@@ -33,6 +36,8 @@ export default {
 }
 </script>
 
-<style lang="css">
-
+<style lang="less">
+  .img_div{
+    width: 100%;
+  }
 </style>

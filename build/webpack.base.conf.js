@@ -7,7 +7,9 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-module.exports = {
+const vuxLoader = require('vux-loader')
+
+var baseConfig = {
   entry: {
     app: './src/main.js'
   },
@@ -65,3 +67,7 @@ module.exports = {
     ]
   }
 }
+
+module.exports = vuxLoader.merge(baseConfig, {
+  plugins: ['vux-ui']
+})

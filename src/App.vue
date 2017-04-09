@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <transition :name='transitionName'>
         <router-view></router-view>
-    </transition>
   </div>
 </template>
 
@@ -14,11 +12,6 @@ export default {
       transitionName: 'slide-fade'
     }
   },
-  watch:{
-    '$route' (to, from) {
-			this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-fade';
-		}
-  }
 }
 </script>
 
