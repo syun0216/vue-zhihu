@@ -39,5 +39,8 @@ export default {
 <style lang="less">
   .img_div{
     width: 100%;
+    img{
+      width:100%;
+    }
   }
 </style>

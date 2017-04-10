@@ -1,11 +1,16 @@
 <template lang="html">
   <div>
-      <Swiper v-if="demo01_list != null" :list="demo01_list" v-model="demo01_index" @on-index-change="demo01_onIndexChange"></Swiper>
+      <Swiper class="swiper-container"  v-if="demo01_list != null" v-model="demo01_index" @on-index-change="demo01_onIndexChange">
+          <swiper-item class="swiper-img" @click.native="clickFunc(item.id)" v-for="(item, index) in demo01_list" :key="index">
+          <img :src="item.img" />
+          <p>123</p>
+        </swiper-item>
+      </Swiper>
   </div>
 </template>
 
 <script>
-import { Swiper, GroupTitle, SwiperItem, XButton, Divider } from 'vux'
+import { Swiper, SwiperItem } from 'vux'
 
 const baseList = [{
   url: 'javascript:',
@@ -22,7 +27,8 @@ const baseList = [{
 }]
 export default {
   components: {
-    Swiper
+    Swiper,
+    SwiperItem
   },
   data(){
     return {
@@ -40,11 +46,20 @@ export default {
         let _obj = {
           url:'javascript',
           img:"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl="+val.image,
-          title:val.title
+          title:val.title,
+          id:val.id
         };
         _list.push(_obj);
       })
       this.demo01_list = _list;
+    },
+    clickFunc(id){
+      this.$router.push({
+        path: 'con',
+        query: {
+          id: id || ""
+        }
+      });
     }
   },
   props:{
@@ -59,5 +74,14 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="less">
+.swiper-container{
+  width:100%;
+}
+.swiper-img{
+  width:100%;
+  img{
+    width:100%;
+  }
+}
 </style>

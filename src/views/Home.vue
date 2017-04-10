@@ -2,7 +2,6 @@
   <div class="">
     <v-loading v-if='newsData== null'></v-loading>
     <v-swiper v-if="newsData!=null" :swiperData="newsData.top_stories"></v-swiper>
-    <v-confirm></v-confirm>
     <div v-if="newsData != null">
       <group v-for='item in newsData.stories' v-bind:data="item" v-bind:key="item.id">
           <cell :title="item.title" @click.native="onClick(item.id)">
