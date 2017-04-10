@@ -17,10 +17,14 @@ export default {
 		})
 	},
 	getNewsById( id ) {
-		return axios.get( NewsIdResource + id )
+		return axios.get( NewsIdResource + id ,{
+			timeout:5000
+		})
 	},
 	getNewsByDate( date ) {
-		return axios.get( NewsDateResource + date )
+		return axios.get( NewsDateResource + date ,{
+			timeout:5000
+		})
 	},
 	getNewsInfoById( id ) {
 		return axios.get( NewsInfoResource, {

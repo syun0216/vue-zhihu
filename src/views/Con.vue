@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <v-loading v-if="newsContent==null"></v-loading>
+    <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="topTitle" :shareUrl="newsContent.share_url"></v-title-bar>
     <v-content v-if="newsContent != null">
       <div class="img_div">
@@ -18,7 +18,8 @@ export default {
   data(){
     return {
       newsContent:null,
-      topTitle:null
+      topTitle:null,
+      isLoading:false
     }
   },
   methods:{
@@ -26,11 +27,16 @@ export default {
       let _this = this;
       api.getNewsById(id).then(function(data){
         _this.newsContent = data.data;
+        _this.isLoading = false;
+        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g,"style=\"width:100%\" src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
         _this.topTitle = _this.newsContent.title.length > 10 ? _this.newsContent.title.substring(0,10)+"..." : _this.newsContent.title;
+      },function(){
+        _this.isLoading = false;
       })
     }
   },
   created(){
+    this.isLoading = true;
     this.getNewsById(this.$route.query.id);
   }
 }
