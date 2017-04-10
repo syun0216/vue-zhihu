@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <transition :name="transitionName"></transition>
+    <transition :name="transitionName">
         <router-view></router-view>
+    </transition>
   </div>
 </template>
 

@@ -1,7 +1,14 @@
 <template lang="html">
   <div style="padding:15px;">
-      <x-button @click.native="showPlugin" type="primary">Show</x-button>
-    </div>
+      <x-button @click.native="test" type="primary">Show</x-button>
+     <confirm v-model="show" :title="title"
+     @on-cancel="onCancel"
+     @on-confirm="onConfirm"
+     @on-show="onShow"
+     @on-hide="onHide">
+       <p style="text-align:center;">123  </p>
+     </confirm>
+   </div>
 </template>
 
 <script>
@@ -10,6 +17,7 @@ export default {
   data(){
     return {
       title:"test",
+      show:false
     }
   },
   components:{
@@ -17,6 +25,18 @@ export default {
     XButton
   },
   methods:{
+    onCancel () {
+     console.log('on cancel')
+   },
+   onConfirm () {
+     console.log('on confirm')
+   },
+   onHide () {
+     console.log('on hide')
+   },
+   onShow () {
+     console.log('on show')
+   },
     showPlugin () {
       console.log(this.$vux);
      this.$vux.confirm.show({
@@ -36,6 +56,9 @@ export default {
        }
      })
    },
+   test(){
+     this.show = !this.show;
+   }
   },
   props:{
     isShow:{
