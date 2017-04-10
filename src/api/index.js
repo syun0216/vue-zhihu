@@ -13,17 +13,17 @@ import {
 export default {
 	getNews() {
 		return axios.get( NewsResource ,{
-			timeout:5000
+			timeout:4500
 		})
 	},
 	getNewsById( id ) {
 		return axios.get( NewsIdResource + id ,{
-			timeout:5000
+			timeout:4500
 		})
 	},
 	getNewsByDate( date ) {
 		return axios.get( NewsDateResource + date ,{
-			timeout:5000
+			timeout:4500
 		})
 	},
 	getNewsInfoById( id ) {

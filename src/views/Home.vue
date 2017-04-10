@@ -10,7 +10,7 @@
           </cell>
       </group>
     </div>
-    <!-- <v-error v-if="isError" :reload="getNews"></v-error> -->
+    <v-iserror v-if="isError" :reload="getNews"></v-iserror>
   </div>
 </template>
 
@@ -34,6 +34,8 @@ export default {
   },
   methods: {
     getNews() {
+      this.isLoading = true;
+      this.isError = false;
       let _this = this;
       api.getNews().then(function(data) {
         _this.newsData = data.data;
@@ -53,7 +55,6 @@ export default {
     }
   },
   beforeMount() {
-    this.isLoading = true;
     this.getNews();
   }
 }

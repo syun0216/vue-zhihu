@@ -9,6 +9,7 @@
       <div v-html="newsContent.body">
       </div>
     </v-content>
+    <v-iserror v-if="isError" :reload="getNewsById(id)"></v-iserror>
   </div>
 </template>
 
@@ -19,11 +20,15 @@ export default {
     return {
       newsContent:null,
       topTitle:null,
-      isLoading:false
+      id:null,
+      isLoading:false,
+      isError:false
     }
   },
   methods:{
     getNewsById(id){
+      this.isLoading = true;
+      this.isError = false;
       let _this = this;
       api.getNewsById(id).then(function(data){
         _this.newsContent = data.data;
@@ -32,11 +37,12 @@ export default {
         _this.topTitle = _this.newsContent.title.length > 10 ? _this.newsContent.title.substring(0,10)+"..." : _this.newsContent.title;
       },function(){
         _this.isLoading = false;
+        _this.isError = true;
       })
     }
   },
   created(){
-    this.isLoading = true;
+    this.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
   }
 }
