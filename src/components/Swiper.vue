@@ -1,10 +1,9 @@
 <template lang="html">
   <div>
-      <Swiper class="swiper-container"  v-if="demo01_list != null" v-model="demo01_index" @on-index-change="demo01_onIndexChange">
-          <swiper-item class="swiper-img" @click.native="clickFunc(item.id)" v-for="(item, index) in demo01_list" :key="index">
-          <img :src="item.img" />
-          <p>{{item.title}}</p>
-        </swiper-item>
+      <Swiper class="swiper-container" auto @click.native="clickFunc" :list="demo01_list" v-if="demo01_list != null" v-model="demo01_index" @on-index-change="demo01_onIndexChange">
+          <!-- <swiper-item class="swiper-img" @click.native="clickFunc(item.id)" v-for="(item, index) in demo01_list" :key="index">
+              <img :src="item.img" />
+        </swiper-item> -->
       </Swiper>
   </div>
 </template>
@@ -47,19 +46,24 @@ export default {
           url:'javascript',
           img:"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl="+val.image,
           title:val.title,
-          id:val.id
+          id:val.id,
         };
         _list.push(_obj);
       })
       this.demo01_list = _list;
     },
-    clickFunc(id){
-      this.$router.push({
-        path: 'con',
-        query: {
-          id: id || ""
+    clickFunc(){
+      let _this = this;
+      this.demo01_list.map((val,idx)=>{
+        if(idx == _this.demo01_index){
+          this.$router.push({
+            path: 'con',
+            query: {
+              id: val.id || ""
+            }
+          });
         }
-      });
+      })
     }
   },
   props:{

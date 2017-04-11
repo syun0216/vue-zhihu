@@ -16,6 +16,7 @@ export default {
   },
   '$route' (to, from) {
     this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-left';
+    console.log(this.transitionName);
   }
 }
 </script>

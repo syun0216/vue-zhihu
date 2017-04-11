@@ -4,7 +4,7 @@
       <img src="./../assets/cry.png" alt="请求失败图片">
     </div>
     <div class="error_click">
-      <x-button @click.native="reload" type="primary">请求数据失败,请点击重试...</x-button>
+      <x-button @click.native="reload(reloadParams.id)" type="primary">请求数据失败,请点击重试...</x-button>
     </div>
   </div>
 </template>
@@ -21,7 +21,14 @@ export default {
     reload:{
       type:Function,
       default:null
+    },
+    reloadParams:{
+      type:Object,
+      default:null
     }
+  },
+  mouted(){
+    console.log(this._props.reloadParams);
   }
 }
 </script>

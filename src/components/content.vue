@@ -11,7 +11,7 @@
 .v_content{
   overflow: auto;
   position:absolute;
-  top:43px;
+  top:46px;
   left: 5%;
   width: 90%;
   -webkit-overflow-scrolling: touch;

@@ -1,6 +1,7 @@
 <template lang="html">
   <div>
-    <v-loading v-if='isLoading'></v-loading>
+    <v-slidebar v-if="newsData != null"></v-slidebar>
+    <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!=null" :swiperData="newsData.top_stories"></v-swiper>
     <div v-if="newsData != null">
         <cell :title="newsData.date.substring(0,4)+'/'+newsData.date.substring(4,6)+'/'+newsData.date.substring(6,8)"></cell>

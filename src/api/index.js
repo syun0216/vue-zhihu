@@ -18,7 +18,7 @@ export default {
 	},
 	getNewsById( id ) {
 		return axios.get( NewsIdResource + id ,{
-			timeout:4500
+			timeout:500
 		})
 	},
 	getNewsByDate( date ) {

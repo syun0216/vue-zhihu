@@ -9,7 +9,7 @@
       <div v-html="newsContent.body">
       </div>
     </v-content>
-    <v-iserror v-if="isError" :reload="getNewsById(id)"></v-iserror>
+    <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     return {
       newsContent:null,
       topTitle:null,
-      id:null,
+      requestData:{id:null},
       isLoading:false,
       isError:false
     }
@@ -42,7 +42,7 @@ export default {
     }
   },
   created(){
-    this.id = this.$route.query.id;
+    this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
   }
 }

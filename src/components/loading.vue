@@ -36,7 +36,9 @@ export default {
   .content{
     position:absolute;
     top:49%;
-    left:25%;
+    left:50%;
+    display: inline-block;
+    margin-left:-78px;
     color:white;
     text-align: center
   }
