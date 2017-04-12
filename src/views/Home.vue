@@ -10,12 +10,13 @@
           </cell>
       </group>
     </div>
+    <infinite-scroll :scroller="scroller" :loading="bottomLoading" v-on:load="loadMore" />
     <v-iserror v-if="isError" :reload="getNews"></v-iserror>
   </div>
 </template>
 
 <script>
-import api from './../api/index';
+import api from './../api/index'
 import {
   Cell,
   Group
@@ -25,7 +26,11 @@ export default {
     return {
       newsData: null,
       isLoading:false,
-      isError:false
+      bottomLoading:false,
+      bottomLoadingText:"正在加载中...",
+      isError:false,
+      count:1,
+      scroller:null
     }
   },
   components: {
@@ -33,17 +38,28 @@ export default {
     Group
   },
   methods: {
-    getNews() {
+    getNews(type) {
       this.isLoading = true;
       this.isError = false;
       let _this = this;
-      api.getNews().then(function(data) {
-        _this.newsData = data.data;
-        _this.isLoading = false;
-      },function(){
-        _this.isLoading = false;
-        _this.isError = true;
-      })
+      if(type){
+        api.getNews().then(function(data) {
+          _this.newsData = data.data;
+          _this.isLoading = false;
+        },function(){
+          _this.isLoading = false;
+          _this.isError = true;
+        })
+      }
+      else{
+        api.getNewsByDate(_this.getDate(_this.count)).then(function(data){
+          console.log(data);
+          _this.bottomLoading = false;
+        },function(){
+          _this.bottomLoadingText = "加载失败...";
+          _this.bottomLoading = false;
+        })
+      }
     },
     onClick(id) {
       this.$router.push({
@@ -52,10 +68,28 @@ export default {
           id: id || ""
         }
       });
+    },
+    loadMore(){
+      console.log("It works!")
+      this.bottomLoading = true;
+      this.count ++;
+      let _this = this;
+      setTimeout(function(){
+        _this.getNews();
+      },500);
+    },
+    getDate(count){
+      var _date = new Date();
+      _data.setDate(_date.getDate() - count);
+      let _year = _date.getFullYear();
+      let _month = _date.getMonth() + 1;
+      let _day = _date.getDate() + 1;
+      return [_year,_month,_day].join("");
     }
   },
-  beforeMount() {
-    this.getNews();
+  mounted() {
+    this.getNews(1);
+    this.scroller = this.$el;
   }
 }
 </script>

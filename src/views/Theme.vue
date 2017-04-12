@@ -4,16 +4,19 @@
     <v-loading v-if="isLoading"></v-loading>
     <div class="titleImg" v-if="themeData != null">
       <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.background" alt="">
-      <p><span>{{themeData.name}}</span></p>
+      <p><span>{{themeData.name}}</span></br><span style="font-size:0.6em">{{themeData.description.substring(0,20)+"..."}}</span></p>
     </div>
-    <cell :title="themeData.editors[0].name" >
+
+    <cell :title="'作者：'+themeData.editors[0].name" v-if="themeData != null">
       <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.editors[0].avatar" />
     </cell>
-    <group v-if="themeData != null" v-for='item in themeData.stories' v-bind:data="item" v-bind:key="item.id">
-      <cell :title="item.title" @click.native="onClick(item.id)">
-        <!-- <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+item.images[0]" /> -->
-      </cell>
-    </group>
+    <div v-if="themeData != null">
+      <group v-if="themeData != null" v-for='item in themeData.stories' v-bind:data="item" v-bind:key="item.id">
+        <cell :title="item.title" @click.native="onClick(item.id)">
+          <!-- <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+item.images[0]" /> -->
+        </cell>
+      </group>
+    </div>
   </div>
 </template>
 

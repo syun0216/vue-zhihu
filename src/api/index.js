@@ -13,7 +13,7 @@ import {
 export default {
 	getNews() {
 		return axios.get( NewsResource ,{
-			timeout:4500
+			timeout:500
 		})
 	},
 	getNewsById( id ) {

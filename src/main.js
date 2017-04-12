@@ -5,7 +5,10 @@ import App from './App'
 import router from './router'
 import components from '../src/components'
 import vuex from 'vuex'
-// 
+import infinite from './../src/utils/infiniteScroll.vue'
+
+Vue.component( infinite.name, infinite )
+//
 // const store = new vuex({
 //
 // });
