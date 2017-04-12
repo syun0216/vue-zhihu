@@ -27,4 +27,9 @@ npm run e2e
 npm test
 ```
 
+### just like this：
+----------
+![image](https://github.com/syun0216/vue-zhihu/raw/master/src/assets/screenshot.png)
+----------
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
