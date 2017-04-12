@@ -1,6 +1,5 @@
 <template lang="html">
   <div>
-    <v-slidebar v-if="newsData != null"></v-slidebar>
     <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!=null" :swiperData="newsData.top_stories"></v-swiper>
     <div v-if="newsData != null">
@@ -62,4 +61,7 @@ export default {
 </script>
 
 <style lang="less">
+.vux-no-group-title{
+  margin-top:0 !important;
+}
 </style>

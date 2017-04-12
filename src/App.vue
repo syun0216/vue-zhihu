@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-slidebar></v-slidebar>
     <transition :name="transitionName">
         <router-view></router-view>
     </transition>

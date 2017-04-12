@@ -18,7 +18,7 @@ export default {
 	},
 	getNewsById( id ) {
 		return axios.get( NewsIdResource + id ,{
-			timeout:500
+			timeout:4500
 		})
 	},
 	getNewsByDate( date ) {
@@ -34,7 +34,9 @@ export default {
 		} )
 	},
 	getTopics() {
-		return axios.get( TopicsResource )
+		return axios.get( TopicsResource ,{
+			timeout:4500
+		})
 	},
 	getTopicsById( topicid ) {
 		return axios.get( TopicsIdResource + topicid )

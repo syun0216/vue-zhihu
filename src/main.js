@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import components from '../src/components'
-
-// import {ConfirmPlugin} from 'vux'
-// Vue.use(ConfirmPlugin)
+import vuex from 'vuex'
+// 
+// const store = new vuex({
+//
+// });
 
 Object.keys(components).forEach((key)=>{
   var name = key.replace(/(\w)/, (v) => v.toUpperCase()) //首字母大写
@@ -19,6 +21,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  // store,
   template: '<App/>',
   components: { App }
 })
