@@ -2,7 +2,7 @@ const ROOT_URL = "https://zhihu-agent.herokuapp.com/get?api=/";
 let apiZhiHu = {
 	news:'4/news/latest',
 	newsbyid:'4/news/',
-	newsbydate:'4/news/before',
+	newsbydate:'4/news/before/',
 	newsinfo:'4/story-extra',
 	topics:'4/themes',
 	topicsbyid:'4/theme/',
