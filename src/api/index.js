@@ -35,7 +35,7 @@ export default {
 	},
 	getTopics() {
 		return axios.get( TopicsResource ,{
-			timeout:4500
+
 		})
 	},
 	getTopicsById( topicid ) {

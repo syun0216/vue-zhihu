@@ -4,6 +4,7 @@ import Loading from './loading.vue'
 import Content from './content.vue'
 import Iserror from './error.vue'
 import Slidebar from './slidebar.vue'
+import Bottomloadingerror from './bottomloadingerror.vue'
 
 export default {
   Swiper,
@@ -11,5 +12,6 @@ export default {
   Loading,
   Content,
   Iserror,
-  Slidebar
+  Slidebar,
+  Bottomloadingerror
 }

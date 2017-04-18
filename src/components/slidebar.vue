@@ -7,6 +7,7 @@
       <ul>
         <li :class="{active:num == 1}" @click="changeTheme(1)">首页</li>
         <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item.id)">{{item.name}}</li>
+        <li><img src="./../assets/github.png" alt="github"><span>syun0216</span></li>
       </ul>
     </div>
   </div>
@@ -125,6 +126,10 @@ export default {
         }
           &.chose {
             color: #FFD300;
+        }
+        img{
+          width:20px;
+          height:20px;
         }
         }
     }

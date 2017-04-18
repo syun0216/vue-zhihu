@@ -56,6 +56,13 @@ export default {
       });
     }
   },
+  watch:{
+      '$route'(to,from){
+        if(to.query.id != from.query.id){
+            this._getThemeById(to.query.id);
+        }
+      }
+  },
   components:{
     Cell,
     Group

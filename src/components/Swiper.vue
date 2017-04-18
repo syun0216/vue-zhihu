@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-      <Swiper class="swiper-container" auto @click.native="clickFunc" :list="demo01_list" v-if="demo01_list != null" v-model="demo01_index" @on-index-change="demo01_onIndexChange">
+      <Swiper class="swiper-container"  @click.native="clickFunc" :list="demo01_list" v-if="demo01_list != null" v-model="demo01_index" @on-index-change="demo01_onIndexChange">
           <!-- <swiper-item class="swiper-img" @click.native="clickFunc(item.id)" v-for="(item, index) in demo01_list" :key="index">
               <img :src="item.img" />
         </swiper-item> -->

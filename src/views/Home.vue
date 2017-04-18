@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <v-iserror v-if="isError" :reload="getNews"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!=null" :swiperData="newsData[0].top_stories"></v-swiper>
     <div v-if="newsData != null" v-for="nItem in newsData">
@@ -10,10 +11,10 @@
           </cell>
       </group>
     </div>
-    <infinite-loading spinner="waveDots" v-if="newsData != null" :on-infinite="loadMore" ref="infiniteLoading">
-      <span slot="no-more">{{bottomLoadingText}}</span>
+    <infinite-loading spinner="waveDots" v-if="newsData != null && !bottomLoadingError" :on-infinite="loadMore" ref="infiniteLoading">
+      <!-- <span slot="no-more">{{bottomLoadingText}}</span> -->
     </infinite-loading>
-    <v-iserror v-if="isError" :reload="getNews"></v-iserror>
+    <v-bottomloadingerror :isShow="bottomLoadingError" :reload="loadMore"></v-bottomloadingerror>
   </div>
 </template>
 
@@ -29,8 +30,7 @@ export default {
     return {
       newsData: null,
       isLoading:false,
-      bottomLoading:false,
-      bottomLoadingText:"正在加载中...",
+      bottomLoadingError:false,
       isError:false,
       count:1,
       scroller:null
@@ -57,13 +57,12 @@ export default {
         })
       }
       else{
-
         api.getNewsByDate(_this.getDate(_this.count)).then(function(data){
           _this.newsData.push(data.data);
           _this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
         },function(){
-          _this.bottomLoadingText = "加载失败...";
-          _this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+          _this.bottomLoadingError = true;
+          _this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
       })
     }},
     onClick(id) {
@@ -76,6 +75,7 @@ export default {
     },
     loadMore(){
       this.bottomLoading = true;
+      this.bottomLoadingError = false;
       this.count ++;
       let _this = this;
       setTimeout(function(){
