@@ -5,9 +5,9 @@
     </div>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()" v-if="themeData != null">
       <ul>
-        <li :class="{active:num == 1}" @click="changeTheme(1)">首页</li>
-        <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item.id)">{{item.name}}</li>
-        <li><img src="./../assets/github.png" alt="github"><span>syun0216</span></li>
+        <li :class="{active:num == 1}" @click="changeTheme(1)">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
+        <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item.id)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
+        <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><span>syun0216</span></li>
       </ul>
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
       open:false,
       docked:false,
       themeData:null,
-      num:null
+      num:1
     }
   },
   methods:{
@@ -50,6 +50,9 @@ export default {
       this.num = num;
       let _path = num == 1 ? {path:"home"} : {path:"theme",query:{id:id || ""}};
       this.$router.push(_path);
+    },
+    goGithub(){
+      window.open("https://github.com/syun0216/vue-zhihu");
     }
   },
   mounted(){
@@ -61,7 +64,6 @@ export default {
 <style lang="less">
   .active{
       color:yellow !important;
-      border-bottom:2px solid yellow;
   }
   .header{
     width:100%;
@@ -97,7 +99,7 @@ export default {
     ul{
       margin:0;
       float: left;
-      width:60%;
+      width:50%;
       height: 100%;
       overflow: auto;
       padding: 1.3rem 0.5rem 0.5rem;
@@ -118,8 +120,10 @@ export default {
           font-weight: bold;
           list-style: none;
           color:#fff;
-          margin: 17px 56px;
+          margin: 17px 9px;
           padding-bottom:2px;
+          width:140px;
+          text-align: left;
           .iconfont {
             float: right;
             font-size: 0.6rem;
@@ -130,6 +134,11 @@ export default {
         img{
           width:20px;
           height:20px;
+          float: right;
+        }
+        span{
+          vertical-align: super;
+          margin-left: 2px;
         }
         }
     }

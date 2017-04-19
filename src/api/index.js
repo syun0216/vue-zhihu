@@ -39,7 +39,9 @@ export default {
 		})
 	},
 	getTopicsById( topicid ) {
-		return axios.get( TopicsIdResource + topicid )
+		return axios.get( TopicsIdResource + topicid ,{
+			timeout:4500
+		})
 	},
 	getSections() {
 		return axios.get( SectionsResource )
