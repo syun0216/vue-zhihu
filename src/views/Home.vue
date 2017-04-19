@@ -2,7 +2,7 @@
   <div>
     <v-iserror v-if="isError" :reload="getNews"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
-    <v-swiper v-if="newsData!=null" :swiperData="newsData[0].top_stories"></v-swiper>
+    <v-swiper v-if="newsData!=null" auto :swiperData="newsData[0].top_stories"></v-swiper>
     <div v-if="newsData != null" v-for="nItem in newsData">
       <div class="time_tips">
         {{nItem.date.substring(0,4)+'年'+nItem.date.substring(4,6)+'月'+nItem.date.substring(6,8)+'日'}}
@@ -111,4 +111,7 @@ export default {
   background: rgba(93, 93, 84, 0.75);
   color:white;
 }
+// .vux-swiper-desc{
+//   padding: 20px 50px 32px 13px !important;
+// }
 </style>

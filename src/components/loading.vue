@@ -3,7 +3,7 @@
     <div class="spinner">
       <spinner type="ios-small" slot="value"></spinner>
     </div>
-    <p class="content">正在加载中，请稍候...</p>
+    <p class="loading_content">正在加载中，请稍候...</p>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
     left: 50%;
     margin:-25px 0 0 -25px;
   }
-  .content{
+  .loading_content{
     position:absolute;
     top:49%;
     left:50%;

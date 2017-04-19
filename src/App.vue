@@ -41,4 +41,13 @@ export default {
      opacity: 0.1;
      -webkit-transform: translate(-50vw, 0);
  }
+ .vux-no-group-title{
+   margin-top:0 !important;
+ }
+ .weui-cell{
+   padding:0 !important;
+ }
+ .vux-no-group-title{
+   font-size:14px;
+ }
 </style>

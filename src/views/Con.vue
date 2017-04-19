@@ -2,13 +2,13 @@
   <div class="">
     <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="topTitle" :shareUrl="newsContent.share_url"></v-title-bar>
-    <v-content v-if="newsContent != null">
-      <div class="img_div">
+    <!-- <v-content v-if="newsContent != null"> -->
+      <div class="img_div" v-if="newsContent != null">
         <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+newsContent.image" alt="">
       </div>
-      <div v-html="newsContent.body">
+      <div v-html="newsContent.body" v-if="newsContent != null">
       </div>
-    </v-content>
+    <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
   </div>
 </template>
@@ -32,8 +32,17 @@ export default {
       let _this = this;
       api.getNewsById(id).then(function(data){
         _this.newsContent = data.data;
+        console.log(_this.newsContent);
+        if(_this.newsContent.css.length != 0 && _this.newsContent.css[0] != null){
+          let _link = document.createElement("link");
+          _link.setAttribute("rel","stylesheet");
+          _link.setAttribute("type","text/css");
+          _link.setAttribute("href",_this.newsContent.css[0]);
+          let _headTag = document.getElementsByTagName("head")[0];
+          _headTag.appendChild(_link);
+        }
         _this.isLoading = false;
-        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g,"style=\"width:100%\" src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
+        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g,"src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
         _this.topTitle = _this.newsContent.title.length > 10 ? _this.newsContent.title.substring(0,10)+"..." : _this.newsContent.title;
       },function(){
         _this.isLoading = false;
@@ -54,5 +63,8 @@ export default {
     img{
       width:100%;
     }
+  }
+  .headline .img-place-holder{
+    height: 0 !important;
   }
 </style>

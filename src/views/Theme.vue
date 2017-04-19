@@ -6,14 +6,15 @@
       <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.background" alt="">
       <p><span>{{themeData.name}}</span></br><span style="font-size:0.6em">{{themeData.description.substring(0,20)+"..."}}</span></p>
     </div>
-
-    <cell :title="'作者：'+themeData.editors[0].name" v-if="themeData != null">
-      <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.editors[0].avatar" />
-    </cell>
+    <div class="_author" v-if="themeData!= null">
+      <span>主编</span>
+      <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.editors[0].avatar" alt="author" />
+      <span>{{themeData.editors[0].name}}</span>
+    </div>
     <div v-if="themeData != null">
       <group v-if="themeData != null" v-for='item in themeData.stories' v-bind:data="item" v-bind:key="item.id">
         <cell :title="item.title" @click.native="onClick(item.id)">
-          <!-- <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+item.images[0]" /> -->
+          <img v-if="typeof item.images != 'undefined'" slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+item.images[0]" />
         </cell>
       </group>
     </div>
@@ -97,7 +98,27 @@ export default {
     }
   }
 }
+._author{
+  text-align: left;
+  padding:10px 0 10px 5%;
+  background: rgba(93, 93, 84, 0.75);
+  color:white;
+  img{
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+    vertical-align: sub;
+    margin:0 10px 0 20px;
+  }
+}
+.weui-cell{
+  padding:0 !important;
+}
 .vux-no-group-title{
-  margin-top:0 !important;
+  font-size:14px;
+  text-align: left;
+}
+.vux-label{
+  margin:0 4px 0 7px;
 }
 </style>
