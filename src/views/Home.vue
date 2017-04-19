@@ -87,7 +87,7 @@ export default {
     },
     getDate(count){
       var _date = new Date();
-      _date.setDate(_date.getDate() - count);
+      _date.setDate(_date.getDate() + 1 - count);
       let _year = _date.getFullYear();
       let _month = (_date.getMonth() + 1) < 10 ? "0" +(_date.getMonth() + 1) : _date.getDate() + 1;
       let _day = (_date.getDate() + 1) < 10 ? "0"+(_date.getDate() + 1) : _date.getDate() + 1;
@@ -111,7 +111,7 @@ export default {
   background: rgba(93, 93, 84, 0.75);
   color:white;
 }
-// .vux-swiper-desc{
-//   padding: 20px 50px 32px 13px !important;
-// }
+.vux-swiper-desc{
+  padding: 20px 50px 32px 13px !important;
+}
 </style>

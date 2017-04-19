@@ -1,10 +1,11 @@
 <template lang="html">
   <div class="">
     <v-loading v-if="isLoading"></v-loading>
-    <v-title-bar v-if="newsContent != null" :content="topTitle" :shareUrl="newsContent.share_url"></v-title-bar>
+    <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
       <div class="img_div" v-if="newsContent != null">
         <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+newsContent.image" alt="">
+        <h3>{{newsContent.title}}</h3>
       </div>
       <div v-html="newsContent.body" v-if="newsContent != null">
       </div>
@@ -16,41 +17,47 @@
 <script>
 import api from './../api/index';
 export default {
-  data(){
+  data() {
     return {
-      newsContent:null,
-      topTitle:null,
-      requestData:{id:null},
-      isLoading:false,
-      isError:false
+      newsContent: null,
+      requestData: {
+        id: null
+      },
+      isLoading: false,
+      isError: false,
+      linkcss: null
     }
   },
-  methods:{
-    getNewsById(id){
+  methods: {
+    getNewsById(id) {
       this.isLoading = true;
       this.isError = false;
       let _this = this;
-      api.getNewsById(id).then(function(data){
+      api.getNewsById(id).then(function(data) {
         _this.newsContent = data.data;
-        console.log(_this.newsContent);
-        if(_this.newsContent.css.length != 0 && _this.newsContent.css[0] != null){
+        if (_this.newsContent.css.length != 0 && _this.newsContent.css[0] != null) {
           let _link = document.createElement("link");
-          _link.setAttribute("rel","stylesheet");
-          _link.setAttribute("type","text/css");
-          _link.setAttribute("href",_this.newsContent.css[0]);
+          _link.setAttribute("rel", "stylesheet");
+          _link.setAttribute("type", "text/css");
+          _link.setAttribute("href", _this.newsContent.css[0]);
+          _this.linkcss = _link;
           let _headTag = document.getElementsByTagName("head")[0];
           _headTag.appendChild(_link);
         }
         _this.isLoading = false;
-        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g,"src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
-        _this.topTitle = _this.newsContent.title.length > 10 ? _this.newsContent.title.substring(0,10)+"..." : _this.newsContent.title;
-      },function(){
+        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g, "src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
+      }, function() {
         _this.isLoading = false;
         _this.isError = true;
       })
+    },
+    clickBack(){
+      let _headTag = document.getElementsByTagName("head")[0];
+      _headTag.removeChild(this.linkcss);
+      this.$router.go(-1);
     }
   },
-  created(){
+  mounted() {
     this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
   }
@@ -58,13 +65,22 @@ export default {
 </script>
 
 <style lang="less">
-  .img_div{
+.img_div {
     width: 100%;
-    img{
-      width:100%;
+    position: relative;
+    img {
+        width: 100%;
     }
-  }
-  .headline .img-place-holder{
+    h3 {
+      position: absolute;
+      bottom:0;
+      padding:0 5px;
+      color:white;
+      font-size:20px;
+      font-family: "微软雅黑";
+      }
+}
+.headline .img-place-holder {
     height: 0 !important;
-  }
+}
 </style>

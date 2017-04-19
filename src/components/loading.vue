@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="loading">
+  <div class="d_loading">
     <div class="spinner">
       <spinner type="ios-small" slot="value"></spinner>
     </div>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="less">
-.loading{
+.d_loading{
   position:fixed;
   width: 100%;
   height: 100%;

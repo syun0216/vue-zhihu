@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <img src="./../assets/menu.png" alt="菜单按钮" @click="toggle()">
-      <p>{{titleName}}</p>
+      <p class="p_title">{{titleName}}</p>
     </div>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()" v-if="themeData != null">
       <ul>
@@ -81,7 +81,7 @@ export default {
       top:20%;
       left: 5%;
     }
-    p{
+    .p_title{
       text-align: center;
       color:white;
       margin: 9px;

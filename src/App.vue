@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-slidebar></v-slidebar>
+    <v-slidebar v-if="isSlideBarShow"></v-slidebar>
     <transition :name="transitionName">
         <router-view></router-view>
     </transition>
@@ -12,12 +12,14 @@ export default {
   name: 'app',
   data(){
     return {
-        transitionName: 'slide-left'
+        transitionName: 'slide-left',
+        isSlideBarShow:true
     }
   },
-  '$route' (to, from) {
+  watch:{'$route' (to, from) {
     this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-left';
-    console.log(this.transitionName);
+    this.isSlideBarShow = !(to.path == "/con");
+  }
   }
 }
 </script>

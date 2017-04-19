@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="title">
     <span v-if="canBack" class="back" @click="goBack"><img src="./../assets/back.png" alt="返回按钮"></span>
-    <span class="content">{{content}}</span>
+    <span class="t_content">{{content}}</span>
     <span v-if="shareUrl != null" class="share"><img src="./../assets/share.png" alt="" @click="goShare()"></span>
   </div>
 </template>
@@ -21,11 +21,20 @@ export default {
     shareUrl:{
       type:String,
       default:null
+    },
+    backFunc:{
+      type:Function,
+      default:null
     }
   },
   methods:{
     goBack(){
-      this.$router.go(-1);
+      if(this.$props.backFunc == null){
+          this.$router.go(-1);
+      }
+      else{
+        this.$props.backFunc();
+      }
     },
     goShare(){
       if(this.shareUrl){
@@ -33,8 +42,8 @@ export default {
       }
     }
   },
-  created(){
-
+  mounted(){
+    console.log(this.$props);
   }
 
 }
@@ -46,17 +55,17 @@ export default {
   top:0;
   left: 0;
   width:100%;
-  height: 40px;
-  border:1px solid #ddd;
+  height: 55px;
   z-index: 999;
-  background: white;
+  color:white;
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
   .back{
     width:15px;
     img{
-      width:30px;
+      width:22px;
       position: absolute;
       left: 8px;
-      top:4px;
+      top:7px;
     }
   }
   .share{
@@ -67,10 +76,11 @@ export default {
       top:7px;
     }
   }
-  .content{
+  .t_content{
     display:inline-block;
     margin-top: 8px;
     font-size:16px;
+    color:white;
   }
 }
 </style>
