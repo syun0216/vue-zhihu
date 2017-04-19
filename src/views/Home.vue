@@ -4,7 +4,10 @@
     <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!=null" :swiperData="newsData[0].top_stories"></v-swiper>
     <div v-if="newsData != null" v-for="nItem in newsData">
-        <cell :title="nItem.date.substring(0,4)+'/'+nItem.date.substring(4,6)+'/'+nItem.date.substring(6,8)"></cell>
+      <div class="time_tips">
+        {{nItem.date.substring(0,4)+'年'+nItem.date.substring(4,6)+'月'+nItem.date.substring(6,8)+'日'}}
+      </div>
+        <!-- <cell :title="nItem.date.substring(0,4)+'/'+nItem.date.substring(4,6)+'/'+nItem.date.substring(6,8)"></cell> -->
       <group style="margin-top:0px" v-for='item in nItem.stories' v-bind:data="item" v-bind:key="item.id">
           <cell :title="item.title" @click.native="onClick(item.id)">
             <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+item.images[0]" />
@@ -101,5 +104,11 @@ export default {
 <style lang="less">
 .vux-no-group-title{
   margin-top:0 !important;
+}
+.time_tips{
+  padding:5px 0;
+  text-align: center;
+  background: rgba(93, 93, 84, 0.75);
+  color:white;
 }
 </style>

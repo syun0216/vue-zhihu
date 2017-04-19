@@ -2,11 +2,12 @@
   <div>
     <div class="header">
       <img src="./../assets/menu.png" alt="菜单按钮" @click="toggle()">
+      <p>{{titleName}}</p>
     </div>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()" v-if="themeData != null">
       <ul>
         <li :class="{active:num == 1}" @click="changeTheme(1)">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
-        <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item.id)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
+        <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
         <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><span>syun0216</span></li>
       </ul>
     </div>
@@ -22,7 +23,8 @@ export default {
       open:false,
       docked:false,
       themeData:null,
-      num:1
+      num:1,
+      titleName:"今日热闻"
     }
   },
   methods:{
@@ -46,9 +48,10 @@ export default {
 
       })
     },
-    changeTheme(num,id){
+    changeTheme(num,data){
       this.num = num;
-      let _path = num == 1 ? {path:"home"} : {path:"theme",query:{id:id || ""}};
+      this.titleName = typeof data === 'undefined' ? "今日热闻" : data.name;
+      let _path = num == 1 ? {path:"home"} : {path:"theme",query:{id:data.id || ""}};
       this.$router.push(_path);
     },
     goGithub(){
@@ -69,7 +72,6 @@ export default {
     width:100%;
     height:2.8rem;
     z-index:9;
-    padding-left:5%;
     position: fixed;
     top:0;
     background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
@@ -78,6 +80,11 @@ export default {
       position: absolute;
       top:20%;
       left: 5%;
+    }
+    p{
+      text-align: center;
+      color:white;
+      margin: 9px;
     }
   }
   .aside{
