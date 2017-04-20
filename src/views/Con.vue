@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div>
     <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
@@ -7,7 +7,7 @@
         <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+newsContent.image" alt="">
         <h3>{{newsContent.title}}</h3>
       </div>
-      <div v-html="newsContent.body" v-if="newsContent != null">
+      <div class="html_content" v-html="newsContent.body" v-if="newsContent != null">
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
@@ -79,6 +79,9 @@ export default {
       font-size:20px;
       font-family: "微软雅黑";
       }
+}
+.content{
+  font-size:16px !important;
 }
 .headline .img-place-holder {
     height: 0 !important;

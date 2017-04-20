@@ -17,7 +17,7 @@
     <infinite-loading spinner="waveDots" v-if="newsData != null && !bottomLoadingError" :on-infinite="loadMore" ref="infiniteLoading">
       <!-- <span slot="no-more">{{bottomLoadingText}}</span> -->
     </infinite-loading>
-    <v-bottomloadingerror :isShow="bottomLoadingError" :reload="loadMore"></v-bottomloadingerror>
+    <v-bottomloadingerror :isShow="bottomLoadingError" :reload="_bottomLoadingError"></v-bottomloadingerror>
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
           _this.newsData.push(data.data);
           _this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
         },function(){
+          _this.count --;
           _this.bottomLoadingError = true;
           _this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
       })
@@ -92,6 +93,9 @@ export default {
       let _month = (_date.getMonth() + 1) < 10 ? "0" +(_date.getMonth() + 1) : _date.getDate() + 1;
       let _day = (_date.getDate() + 1) < 10 ? "0"+(_date.getDate() + 1) : _date.getDate() + 1;
       return [_year,_month,_day].join("");
+    },
+    _bottomLoadingError(){
+      this.bottomLoadingError = false;
     }
   },
   mounted() {

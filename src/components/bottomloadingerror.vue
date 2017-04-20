@@ -34,7 +34,6 @@ export default {
     text-align: center;
     background:white;
     p{
-      padding:10px 0;
     }
   }
 </style>

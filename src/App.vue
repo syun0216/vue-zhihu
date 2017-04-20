@@ -17,7 +17,8 @@ export default {
     }
   },
   watch:{'$route' (to, from) {
-    this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-left';
+    // this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-left';
+    console.log("changed");
     this.isSlideBarShow = !(to.path == "/con");
   }
   }
