@@ -91,7 +91,7 @@ export default {
     bottom:0;
     right:0;
     font-size:1.5em;
-    background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.8) 95%);
     color:white;
     span{
       margin-right: 10px;
@@ -101,7 +101,7 @@ export default {
 ._author{
   text-align: left;
   padding:10px 0 10px 5%;
-  background: rgba(93, 93, 84, 0.75);
+  background: linear-gradient(to top,#959595,rgba(0,0,0,0.9) 95%) ;
   color:white;
   img{
     width:20px;

@@ -33,7 +33,5 @@ export default {
   .bottomLoading{
     text-align: center;
     background:white;
-    p{
-    }
   }
 </style>

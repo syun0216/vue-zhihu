@@ -15,7 +15,6 @@
       </group>
     </div>
     <infinite-loading spinner="waveDots" v-if="newsData != null && !bottomLoadingError" :on-infinite="loadMore" ref="infiniteLoading">
-      <!-- <span slot="no-more">{{bottomLoadingText}}</span> -->
     </infinite-loading>
     <v-bottomloadingerror :isShow="bottomLoadingError" :reload="_bottomLoadingError"></v-bottomloadingerror>
   </div>
@@ -96,11 +95,17 @@ export default {
     },
     _bottomLoadingError(){
       this.bottomLoadingError = false;
+    },
+    getScoller(){
+      console.log(this.$el.scrollTop);
     }
+  },
+  watch:{
+    'scoller':'getScoller'
   },
   mounted() {
     this.getNews(1);
-    this.scroller = this.$el;
+    this.scroller = this.$el.scrollTop;
   }
 }
 </script>

@@ -74,7 +74,7 @@ export default {
     z-index:9;
     position: fixed;
     top:0;
-    background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
+    background: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
      img{
       width:1.5rem;
       position: absolute;

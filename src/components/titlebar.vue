@@ -55,17 +55,17 @@ export default {
   top:0;
   left: 0;
   width:100%;
-  height: 55px;
+  height: 45px;
   z-index: 999;
   color:white;
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.7) 95%);
   .back{
     width:15px;
     img{
-      width:22px;
+      width:19px;
       position: absolute;
       left: 8px;
-      top:7px;
+      top:9px;
     }
   }
   .share{
@@ -79,7 +79,7 @@ export default {
   .t_content{
     display:inline-block;
     margin-top: 8px;
-    font-size:16px;
+    font-size:17px;
     color:white;
   }
 }

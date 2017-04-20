@@ -72,12 +72,14 @@ export default {
         width: 100%;
     }
     h3 {
+      margin:0;
       position: absolute;
       bottom:0;
       padding:0 5px;
       color:white;
       font-size:20px;
       font-family: "微软雅黑";
+      background:linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 95%);
       }
 }
 .content{
