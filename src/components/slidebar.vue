@@ -127,7 +127,7 @@ export default {
           font-weight: bold;
           list-style: none;
           color:#fff;
-          margin: 17px 9px;
+          margin: 13% 9px;
           padding-bottom:2px;
           width:140px;
           text-align: left;

@@ -5,6 +5,7 @@ import Content from './content.vue'
 import Iserror from './error.vue'
 import Slidebar from './slidebar.vue'
 import Bottomloadingerror from './bottomloadingerror.vue'
+import Backtop from './backtop.vue'
 
 export default {
   Swiper,
@@ -13,5 +14,6 @@ export default {
   Content,
   Iserror,
   Slidebar,
-  Bottomloadingerror
+  Bottomloadingerror,
+  Backtop
 }

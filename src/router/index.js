@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Hello from '@/components/Hello'
 import home from '@/views/Home'
-import con from '@/views/Con'
+import con from '@/views/Content'
 import theme from '@/views/Theme'
 
 Vue.use(Router)

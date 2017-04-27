@@ -14,6 +14,7 @@
           </cell>
       </group>
     </div>
+    <v-backtop></v-backtop>
     <infinite-loading spinner="waveDots" v-if="newsData != null && !bottomLoadingError" :on-infinite="loadMore" ref="infiniteLoading">
     </infinite-loading>
     <v-bottomloadingerror :isShow="bottomLoadingError" :reload="_bottomLoadingError"></v-bottomloadingerror>
