@@ -37,7 +37,7 @@ export default {
         this.open = false;
         setTimeout(function(){
           _this.docked = false;
-        })
+        },500)
       }
     },
     getNewsTopic(){
