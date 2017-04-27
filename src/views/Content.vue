@@ -11,6 +11,7 @@
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
+    <v-backtop></v-backtop>
   </div>
 </template>
 
