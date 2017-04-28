@@ -35,7 +35,7 @@ export default {
       isLoading:false,
       bottomLoadingError:false,
       isError:false,
-      count:1
+      count:1,
     }
   },
   components: {
@@ -95,9 +95,6 @@ export default {
     },
     _bottomLoadingError(){
       this.bottomLoadingError = false;
-    },
-    getScoller(){
-      console.log(this.$el.scrollTop);
     }
   },
   watch:{
@@ -105,14 +102,8 @@ export default {
   },
   mounted() {
     this.getNews(1);
-    this.scroller = this.$el.scrollTop;
-//    window.onscroll = function () {
-//      let _top = document.documentElement.scrollTop || document.body.scrollTop;
-//      window.console.log(_top);
-//      if(_top > 180){
-//      }
-//    }
-  }
+  },
+
 }
 </script>
 

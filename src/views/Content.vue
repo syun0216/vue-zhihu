@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div style="overflow-x: hidden;">
     <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->

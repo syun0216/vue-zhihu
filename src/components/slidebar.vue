@@ -17,6 +17,7 @@
 
 <script>
 import api from "./../api/index"
+import {mapState} from 'vuex'
 export default {
   data(){
     return {
@@ -51,6 +52,12 @@ export default {
     changeTheme(num,data){
       this.num = num;
       this.titleName = typeof data === 'undefined' ? "今日热闻" : data.name;
+      this.$store.commit('changeSelectedName',{
+          name:this.titleName
+      });
+      this.$store.commit('changeSelectedNum',{
+          num:this.num
+      });
       let _path = num == 1 ? {path:"home"} : {path:"theme",query:{id:data.id || ""}};
       this.$router.push(_path);
     },
@@ -60,7 +67,15 @@ export default {
   },
   mounted(){
     this.getNewsTopic();
-  }
+    this.titleName = this.selectedName !== null ? this.selectedName : "今日热闻";
+    this.num = this.selectedNum !== null ? this.selectedNum : 1;
+  },
+  computed:{
+    ...mapState({
+      selectedName:state => state.selectedName,
+      selectedNum:state => state.selectedNum
+    })
+  },
 }
 </script>
 
