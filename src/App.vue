@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-slidebar v-if="isSlideBarShow"></v-slidebar>
-    <transition :name="transitionName">
+    <transition name="fade">
         <router-view></router-view>
     </transition>
   </div>
@@ -35,6 +35,15 @@ export default {
   text-align: center;
   color: #2c3e50;
  ;}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
  .slide-left-enter,
  .slide-right-leave-active {
      opacity: 0;
