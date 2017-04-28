@@ -17,6 +17,24 @@ Object.keys(components).forEach((key)=>{
 })
 
 Vue.config.productionTip = false;
+let _appScrollTop = 0;
+let dom = document.documentElement || document.body;
+router.beforeEach((to,from,next) => {
+  if(to.path === '/con'){
+    _appScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  }
+  next();
+});
+
+router.afterEach((to,from,next) => {
+  if ( to.path === '/con' ) {
+    dom.scrollTop = 0;
+  } else {
+    Vue.nextTick( () => {
+      dom.scrollTop = _appScrollTop;
+    } );
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({

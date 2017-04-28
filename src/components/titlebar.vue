@@ -11,7 +11,7 @@ export default {
   props:{
     content:{
       type:String,
-      default:"",
+      default:"文章详情",
       require:true
     },
     canBack:{

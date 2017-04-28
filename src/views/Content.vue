@@ -76,11 +76,13 @@ export default {
       margin:0;
       position: absolute;
       bottom:0;
-      padding:0 5px;
+      padding:8px 5px 0;
       color:white;
       font-size:20px;
       font-family: "微软雅黑";
+      width:100%;
       background:linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 95%);
+      height: 46px;
       }
 }
 .content{

@@ -8,7 +8,7 @@
       <ul>
         <li :class="{active:num == 1}" @click="changeTheme(1)">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
         <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
-        <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><span>syun0216</span></li>
+        <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><div>syun0216</div></li>
       </ul>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
         this.open = false;
         setTimeout(function(){
           _this.docked = false;
-        })
+        },500)
       }
     },
     getNewsTopic(){
@@ -143,9 +143,9 @@ export default {
           height:20px;
           float: right;
         }
-        span{
-          vertical-align: super;
-          margin-left: 2px;
+        div{
+          display: inline-block;
+          margin-top: 3px;
         }
         }
     }

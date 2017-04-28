@@ -20,6 +20,9 @@ export default {
     // this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-left';
     this.isSlideBarShow = !(to.path == "/con");
   }
+  },
+  mounted(){
+
   }
 }
 </script>
