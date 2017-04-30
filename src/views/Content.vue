@@ -59,9 +59,17 @@ export default {
     }
   },
   mounted() {
+    let _this = this;
     this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
-  }
+    window.onscroll = function(){
+      let _top = document.documentElement.scrollTop || document.body.scrollTop;
+      _this.$store.commit("changeScrollTop",{
+        _top:_top
+      })
+    }
+  },
+
 }
 </script>
 
@@ -73,12 +81,15 @@ export default {
         width: 100%;
     }
     h3 {
+      display:flex;
+      justify-content: center;
+      align-items: center;
       margin:0;
       position: absolute;
       bottom:0;
       padding:8px 5px 0;
       color:white;
-      font-size:20px;
+      font-size:17px;
       font-family: "微软雅黑";
       width:100%;
       background:linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 95%);

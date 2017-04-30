@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <div class="header">
+    <div id="header">
       <img src="./../assets/menu.png" alt="菜单按钮" @click="toggle()">
       <p class="p_title">{{titleName}}</p>
     </div>
@@ -73,9 +73,25 @@ export default {
   computed:{
     ...mapState({
       selectedName:state => state.selectedName,
-      selectedNum:state => state.selectedNum
+      selectedNum:state => state.selectedNum,
+      scrollerTop:state => state.scrollerTop
     })
   },
+  watch:{
+    scrollerTop(){
+      let _top = this.scrollerTop;
+      let _dom = document.getElementById("header");
+      if(_top >= 180 && _top <= 420){
+        let _opacity = _top/420;
+        _dom.style.background = '#5D5D54';
+        _dom.style.opacity = _opacity;
+      }
+      else if(_top < 180){
+        _dom.style.background = "linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%)";
+        _dom.style.opacity = 1;
+      }
+    }
+  }
 }
 </script>
 
@@ -83,7 +99,7 @@ export default {
   .active{
       color:yellow !important;
   }
-  .header{
+  #header{
     width:100%;
     height:2.8rem;
     z-index:9;

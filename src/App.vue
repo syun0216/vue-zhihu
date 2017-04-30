@@ -16,9 +16,13 @@ export default {
         isSlideBarShow:true
     }
   },
-  watch:{'$route' (to, from) {
+  watch:{
+    '$route' (to, from) {
     // this.transitionName = to.path != "/con" ? 'slide-right' : 'slide-left';
     this.isSlideBarShow = !(to.path == "/con");
+  },
+  isOpen(){
+    console.log(123);
   }
   },
   mounted(){
@@ -42,6 +46,10 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
+}
+
+.app-view-hidden {
+    overflow: hidden;
 }
 
  .slide-left-enter,

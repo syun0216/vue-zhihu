@@ -11,7 +11,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state:{
     selectedName:null,
-    selectedNum:null
+    selectedNum:null,
+    scrollerTop:null
   },
   mutations:{
     changeSelectedName(state,payload){
@@ -19,6 +20,9 @@ const store = new Vuex.Store({
     },
     changeSelectedNum(state,payload){
       state.selectedNum = payload.num;
+    },
+    changeScrollTop(state,payload){
+      state.scrollerTop = payload._top;
     }
   }
 });

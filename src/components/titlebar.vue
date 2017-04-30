@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="title">
+  <div id="title">
     <span v-if="canBack" class="back" @click="goBack"><img src="./../assets/back.png" alt="返回按钮"></span>
     <span class="t_content">{{content}}</span>
     <span v-if="shareUrl != null" class="share"><img src="./../assets/share.png" alt="" @click="goShare()"></span>
@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   props:{
     content:{
@@ -42,15 +43,32 @@ export default {
       }
     }
   },
-  mounted(){
-
+  computed:{
+    ...mapState({
+      scrollerTop:state => state.scrollerTop
+    })
+  },
+  watch:{
+    scrollerTop(){
+      let _top = this.scrollerTop;
+      let _dom = document.getElementById("title");
+      if(_top >= 180 && _top <= 420){
+        let _opacity = _top/420;
+        _dom.style.background = '#5D5D54';
+        _dom.style.opacity = _opacity;
+      }
+      else if(_top < 180){
+        _dom.style.background = "linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%)";
+        _dom.style.opacity = 1;
+      }
+    }
   }
 
 }
 </script>
 
 <style lang="less">
-.title{
+#title{
   position:fixed;
   top:0;
   left: 0;
