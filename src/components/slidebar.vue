@@ -81,14 +81,10 @@ export default {
     scrollerTop(){
       let _top = this.scrollerTop;
       let _dom = document.getElementById("header");
-      if(_top >= 180 && _top <= 420){
-        let _opacity = _top/420;
-        _dom.style.background = '#5D5D54';
-        _dom.style.opacity = _opacity;
-      }
-      else if(_top < 180){
-        _dom.style.background = "linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%)";
-        _dom.style.opacity = 1;
+      if(_top <= 180){
+        let _opacity = _top/180;
+        _dom.style.background = `rgba(93, 93, 84, ${_opacity})`;
+        // _dom.style.opacity = _opacity;
       }
     }
   }
@@ -105,7 +101,7 @@ export default {
     z-index:9;
     position: fixed;
     top:0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
+    // background: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
      img{
       width:1.5rem;
       position: absolute;
@@ -116,6 +112,7 @@ export default {
       text-align: center;
       color:white;
       margin: 9px;
+      font-weight: bold;
     }
   }
   .aside{
