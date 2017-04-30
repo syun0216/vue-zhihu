@@ -73,12 +73,12 @@ export default {
     this.requestData.id = this.$route.query.id;
     this._getThemeById(this.$route.query.id);
     let _this = this;
-    window.onscroll = function(){
-      let _top = document.documentElement.scrollTop || document.body.scrollTop;
-      _this.$store.commit("changeScrollTop",{
-        _top:_top
-      })
-    }
+    // window.onscroll = function(){
+    //   let _top = document.documentElement.scrollTop || document.body.scrollTop;
+    //   _this.$store.commit("changeScrollTop",{
+    //     _top:_top
+    //   })
+    // }
   }
 }
 </script>

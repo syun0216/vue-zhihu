@@ -30,8 +30,12 @@
       }
     },
     mounted(){
+      let _this = this;
       window.onscroll = function () {
         let _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        _this.$store.commit("changeScrollTop",{
+          _top:_scrollTop
+        })
         let _top = document.getElementById('back-top');
         if (_scrollTop >= 200) {
           _top.style.bottom = 5 + "%";

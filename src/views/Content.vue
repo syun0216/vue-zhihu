@@ -62,12 +62,12 @@ export default {
     let _this = this;
     this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
-    window.onscroll = function(){
-      let _top = document.documentElement.scrollTop || document.body.scrollTop;
-      _this.$store.commit("changeScrollTop",{
-        _top:_top
-      })
-    }
+    // window.onscroll = function(){
+    //   let _top = document.documentElement.scrollTop || document.body.scrollTop;
+    //   _this.$store.commit("changeScrollTop",{
+    //     _top:_top
+    //   })
+    // }
   },
 
 }

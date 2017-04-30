@@ -100,12 +100,6 @@ export default {
   mounted() {
   this.getNews(1);
   let _this = this;
-  window.onscroll = function(){
-    let _top = document.documentElement.scrollTop || document.body.scrollTop;
-    _this.$store.commit("changeScrollTop",{
-      _top:_top
-    })
-  }
   },
 
 }
