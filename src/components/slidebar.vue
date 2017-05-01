@@ -81,10 +81,17 @@ export default {
     scrollerTop(){
       let _top = this.scrollerTop;
       let _dom = document.getElementById("header");
-      if(_top <= 180){
-        let _opacity = _top/180;
-        _dom.style.background = `rgba(93, 93, 84, ${_opacity})`;
-        // _dom.style.opacity = _opacity;
+      if(this.$route.name === 'home'){
+        if(_top <= 180){
+          let _opacity = _top/180;
+          _dom.style.background = `rgba(93, 93, 84, ${_opacity})`;
+        }
+      }
+      else if(this.$route.name === 'theme'){
+        if(_top <= 280){
+          let _opacity = _top/280;
+          _dom.style.background = `rgba(93, 93, 84, ${_opacity})`;
+        }
       }
     }
   }
