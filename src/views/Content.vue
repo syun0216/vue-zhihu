@@ -1,5 +1,5 @@
 <template lang="html">
-  <div style="overflow-x: hidden;">
+  <div id="app-content" style="overflow-x: hidden;">
     <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
@@ -12,6 +12,10 @@
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
     <v-backtop></v-backtop>
+
+    <!-- 点击放大图片遮罩 -->
+    <div class="dis-bg dis-none" ></div>
+    <!-- 点击放大图片遮罩 -->
   </div>
 </template>
 
@@ -27,7 +31,9 @@ export default {
       isLoading: false,
       isError: false,
       linkcss: null,
-      titleImg: null
+      titleImg: null,
+      imgArr:[],
+      showBg:false
     }
   },
   methods: {
@@ -65,6 +71,35 @@ export default {
     this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
   },
+  updated(){
+    let _imgArr = document.images;
+    let _divBg = document.getElementsByClassName('dis-bg')[0];
+    let _app = document.getElementById('app-content');
+    for(let i of _imgArr){
+        if(i.classList.contains('content-image')){
+          this.imgArr.push(i);
+          i.addEventListener('click',function(){
+            i.classList.toggle('active-img');
+            if(i.classList.contains('active-img')){
+              _divBg.classList.remove('dis-none');
+              _app.style.overflow = 'hidden';
+            }
+            else{
+              _divBg.classList.add('dis-none');
+              _app.style.overflow = 'auto';
+            }
+
+            _divBg.addEventListener('click',function(){
+              _divBg.classList.add('dis-none');
+              i.classList.remove('active-img');
+              _app.style.overflow = 'auto';
+            });
+            // this.showBg = i.classList.contains('active-img');
+
+          })
+        }
+    }
+  }
 
 }
 </script>
@@ -99,4 +134,30 @@ export default {
 .headline .img-place-holder {
     height: 0 !important;
 }
+.active-img{
+  position:fixed;
+  top:30%;
+  left: 0;
+  z-index: 20;
+  transition:transform .5s;
+  transform: scale(1.3);
+  z-index:999;
+  display: flex;
+  align-items: center;
+}
+.dis-bg{
+  background:#222;
+  opacity:0.6;
+  position: fixed;
+  top:0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  z-index: 998;
+  transition:opacity 1s;
+}
+.dis-none{
+  display: none;
+}
+
 </style>

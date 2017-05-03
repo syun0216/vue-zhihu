@@ -6,7 +6,7 @@
     </div>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()" v-if="themeData != null">
       <ul>
-        <li :class="{active:num == 1}" @click="changeTheme(1)">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
+        <li :class="{active:num == 1}" @click="changeTheme(1)"><img src="./../assets/home.png" alt="">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
         <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
         <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><div>syun0216</div></li>
       </ul>
@@ -174,9 +174,18 @@ export default {
             color: #FFD300;
         }
         img{
-          width:20px;
-          height:20px;
-          float: right;
+          &:first-child{
+              width:20px;
+              height:20px;
+              margin-right:5px;
+              vertical-align: -4px;
+          }
+          &:last-child{
+            width:20px;
+            height:20px;
+            float: right;
+            vertical-align: -4px;
+          }
         }
         div{
           display: inline-block;
