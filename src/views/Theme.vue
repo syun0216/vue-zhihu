@@ -6,10 +6,12 @@
       <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.background" alt="">
       <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description.substring(0,20)+"..."}}</span></p>
     </div>
-    <div class="_author" v-if="themeData!= null">
+    <div class="_author" v-if="themeData!= null" >
       <span>主编</span>
-      <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.editors[0].avatar" alt="author" />
-      <span>{{themeData.editors[0].name}}</span>
+      <div v-for="author in themeData.editors" style="display: inline-block">
+      <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+author.avatar" alt="author" />
+      <!--<span>{{author.name}}</span>-->
+      </div>
     </div>
     <div v-if="themeData != null">
       <group v-if="themeData != null" v-for='item in themeData.stories' v-bind:data="item" v-bind:key="item.id">
@@ -101,6 +103,7 @@ export default {
     font-size:1.5em;
     background: linear-gradient(to bottom, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.8) 95%);
     color:white;
+    padding-bottom: 5px;
     span{
       margin-right: 10px;
     }
@@ -109,9 +112,9 @@ export default {
 ._author{
   text-align: left;
   padding:10px 0 10px 5%;
-  background: linear-gradient(to top,#959595,rgba(0,0,0,0.9) 95%) ;
+  background: white;
   margin-top: -4px;
-  color:white;
+  color:#222;
   img{
     width:20px;
     height:20px;
