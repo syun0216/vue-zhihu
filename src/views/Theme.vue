@@ -86,7 +86,7 @@ export default {
 <style lang="less">
 .titleImg{
   width:100%;
-  height:270px;
+  /*height:270px;*/
   position:relative;
   img{
     width:100%;
@@ -110,6 +110,7 @@ export default {
   text-align: left;
   padding:10px 0 10px 5%;
   background: linear-gradient(to top,#959595,rgba(0,0,0,0.9) 95%) ;
+  margin-top: -4px;
   color:white;
   img{
     width:20px;
