@@ -4,7 +4,7 @@
     <v-loading v-if="isLoading"></v-loading>
     <div class="titleImg" v-if="themeData != null">
       <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+themeData.background" alt="">
-      <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description.substring(0,20)+"..."}}</span></p>
+      <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description.length>=20 ? themeData.description.substring(0,20)+"..." : themeData.description}}</span></p>
     </div>
     <div class="_author" v-if="themeData!= null" >
       <span>主编</span>
@@ -46,6 +46,7 @@ export default {
       api.getTopicsById(this.$route.query.id).then(function(data){
         _this.isLoading = false;
         _this.themeData = data.data;
+        _this.isError = false;
       },function(){
         _this.isLoading = false;
         _this.isError = true;

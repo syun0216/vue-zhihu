@@ -54,7 +54,7 @@ export default {
       let _dom = document.getElementById("title");
       if(_top >= 180 && _top <= 420){
         let _opacity = _top/420;
-        _dom.style.background = '#5D5D54';
+        _dom.style.background = '#222';
         _dom.style.opacity = _opacity;
       }
       else if(_top < 180){

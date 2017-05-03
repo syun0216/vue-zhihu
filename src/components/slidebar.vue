@@ -6,7 +6,7 @@
     </div>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()" v-if="themeData != null">
       <ul>
-        <li :class="{active:num == 1}" @click="changeTheme(1)"><img src="./../assets/home.png" alt="">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
+        <li :class="{active:num == 1}" @click="changeTheme(1)">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
         <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
         <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><div>syun0216</div></li>
       </ul>
@@ -84,13 +84,13 @@ export default {
       if(this.$route.name === 'home'){
         if(_top <= 180){
           let _opacity = _top/180;
-          _dom.style.background = `rgba(93, 93, 84, ${_opacity})`;
+          _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
         }
       }
       else if(this.$route.name === 'theme'){
         if(_top <= 280){
           let _opacity = _top/280;
-          _dom.style.background = `rgba(93, 93, 84, ${_opacity})`;
+          _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
         }
       }
     }
@@ -145,7 +145,8 @@ export default {
       height: 100%;
       overflow: auto;
       padding: 1.3rem 0.5rem 0.5rem;
-      background:rgba(93, 93, 84, 0.75);
+      background:#222;
+      opacity: 0.8;
       transform: translate(-100%,0);
       transition: transform 0.3s ease;
       -webkit-overflow-scrolling: touch;
@@ -162,8 +163,8 @@ export default {
           font-weight: bold;
           list-style: none;
           color:#fff;
-          margin: 13% 9px;
-          padding-bottom:2px;
+          margin: 11% 9px;
+          // padding-bottom:2px;
           width:140px;
           text-align: left;
           .iconfont {

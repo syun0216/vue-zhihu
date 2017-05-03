@@ -112,7 +112,7 @@ export default {
 .time_tips{
   padding:5px 0;
   text-align: center;
-  background: rgba(93, 93, 84, 0.75);
+  background: rgba(34, 34, 34, 1);
   color:white;
 }
 .vux-swiper-desc{

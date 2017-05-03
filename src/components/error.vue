@@ -35,7 +35,7 @@ export default {
     }
   },
   mouted(){
-    console.log(this._props.reloadParams);
+    // console.log(this._props.reloadParams);
   }
 }
 </script>

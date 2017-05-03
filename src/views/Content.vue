@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="app-content" style="overflow-x: hidden;">
+  <div style="overflow-x: hidden;">
     <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
@@ -74,7 +74,7 @@ export default {
   updated(){
     let _imgArr = document.images;
     let _divBg = document.getElementsByClassName('dis-bg')[0];
-    let _app = document.getElementById('app-content');
+    let _app = document.getElementsByClassName('html_content')[0];
     for(let i of _imgArr){
         if(i.classList.contains('content-image')){
           this.imgArr.push(i);
@@ -82,17 +82,17 @@ export default {
             i.classList.toggle('active-img');
             if(i.classList.contains('active-img')){
               _divBg.classList.remove('dis-none');
-              _app.style.overflow = 'hidden';
+              _app.classList.add('overflow-hidden');
             }
             else{
               _divBg.classList.add('dis-none');
-              _app.style.overflow = 'auto';
+              _app.classList.remove('overflow-hidden');
             }
 
             _divBg.addEventListener('click',function(){
               _divBg.classList.add('dis-none');
               i.classList.remove('active-img');
-              _app.style.overflow = 'auto';
+              _app.classList.remove('overflow-hidden');
             });
             // this.showBg = i.classList.contains('active-img');
 
@@ -140,14 +140,14 @@ export default {
   left: 0;
   z-index: 20;
   transition:transform .5s;
-  transform: scale(1.3);
+  transform: scale(1.1);
   z-index:999;
   display: flex;
   align-items: center;
 }
 .dis-bg{
   background:#222;
-  opacity:0.6;
+  opacity:1;
   position: fixed;
   top:0;
   left: 0;
@@ -159,5 +159,7 @@ export default {
 .dis-none{
   display: none;
 }
-
+.overflow-hidden{
+  overflow: hidden;
+}
 </style>

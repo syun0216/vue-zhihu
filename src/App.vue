@@ -3,7 +3,7 @@
     <v-slidebar v-if="isSlideBarShow"></v-slidebar>
     <transition name="fade">
       <!-- <keep-alive> -->
-        <router-view></router-view>
+        <router-view id="route-view"></router-view>
       <!-- </keep-alive> -->
     </transition>
   </div>
