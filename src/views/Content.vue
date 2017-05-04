@@ -48,7 +48,7 @@ export default {
           let _link = document.createElement("link");
           _link.setAttribute("rel", "stylesheet");
           _link.setAttribute("type", "text/css");
-          _link.setAttribute("href", _this.newsContent.css[0]);
+          _link.setAttribute("href", _this.newsContent.css[0].replace(/http/g,"https"));
           _this.linkcss = _link;
           let _headTag = document.getElementsByTagName("head")[0];
           _headTag.appendChild(_link);
