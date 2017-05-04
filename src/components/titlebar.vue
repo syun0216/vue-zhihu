@@ -83,7 +83,7 @@ export default {
       width:19px;
       position: absolute;
       left: 8px;
-      top:9px;
+      top:12px;
     }
   }
   .share{
@@ -91,12 +91,12 @@ export default {
       width:23px;
       position: absolute;
       right: 12px;
-      top:7px;
+      top:10px;
     }
   }
   .t_content{
     display:inline-block;
-    margin-top: 8px;
+    margin-top: 10px;
     font-size:17px;
     color:white;
   }

@@ -30,10 +30,13 @@ export default {
   },
   methods:{
     toggle(){
+      let _app = document.getElementById('app');
       if(!this.open){
+        _app.classList.add('overflow-hidden');
         this.docked = true;
         this.open = true;
       }else{
+        _app.classList.remove('overflow-hidden');
         let _this = this;
         this.open = false;
         setTimeout(function(){
@@ -216,5 +219,11 @@ export default {
             display: block;
         }
     }
+  }
+  .overflow-hidden{
+    overflow: hidden;
+    width:100vw;
+    height: 100vh;
+    position:absolute;
   }
 </style>

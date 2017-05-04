@@ -74,7 +74,6 @@ export default {
   updated(){
     let _imgArr = document.images;
     let _divBg = document.getElementsByClassName('dis-bg')[0];
-    let _app = document.getElementsByClassName('html_content')[0];
     for(let i of _imgArr){
         if(i.classList.contains('content-image')){
           this.imgArr.push(i);
@@ -82,17 +81,14 @@ export default {
             i.classList.toggle('active-img');
             if(i.classList.contains('active-img')){
               _divBg.classList.remove('dis-none');
-              _app.classList.add('overflow-hidden');
             }
             else{
               _divBg.classList.add('dis-none');
-              _app.classList.remove('overflow-hidden');
             }
 
             _divBg.addEventListener('click',function(){
               _divBg.classList.add('dis-none');
               i.classList.remove('active-img');
-              _app.classList.remove('overflow-hidden');
             });
             // this.showBg = i.classList.contains('active-img');
 
@@ -158,8 +154,5 @@ export default {
 }
 .dis-none{
   display: none;
-}
-.overflow-hidden{
-  overflow: hidden;
 }
 </style>
