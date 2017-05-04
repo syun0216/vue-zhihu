@@ -2,6 +2,9 @@
 
 > A vue.js zhihuribao
 
+### online play
+<img src="https://github.com/syun0216/vue-zhihu/raw/master/src/assets/qrcode.png" width="80">
+
 ## Build Setup
 
 ``` bash
