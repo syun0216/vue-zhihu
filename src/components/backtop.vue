@@ -5,6 +5,7 @@
 </template>
 
 <script>
+//todo:修改频繁commit store操作
   export default{
     methods: {
       scroller(){
@@ -33,9 +34,11 @@
       let _this = this;
       window.onscroll = function () {
         let _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        _this.$store.commit("changeScrollTop",{
+        if(_scrollTop < 300){
+          _this.$store.commit("changeScrollTop",{
           _top:_scrollTop
         })
+        }
         let _top = document.getElementById('back-top');
         if (_scrollTop >= 200) {
           _top.style.bottom = 5 + "%";

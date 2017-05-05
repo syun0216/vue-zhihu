@@ -6,6 +6,7 @@ import Iserror from './error.vue'
 import Slidebar from './slidebar.vue'
 import Bottomloadingerror from './bottomloadingerror.vue'
 import Backtop from './backtop.vue'
+import Toast from './Toast.vue'
 
 export default {
   Swiper,
@@ -15,5 +16,6 @@ export default {
   Iserror,
   Slidebar,
   Bottomloadingerror,
-  Backtop
+  Backtop,
+  Toast
 }

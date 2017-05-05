@@ -52,8 +52,8 @@ export default {
     scrollerTop(){
       let _top = this.scrollerTop;
       let _dom = document.getElementById("title");
-      if(_top >= 180 && _top <= 420){
-        let _opacity = _top/420;
+      if(_top >=90 && _top <= 300){
+        let _opacity = _top/300;
         _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
       }
       else if(_top < 180){

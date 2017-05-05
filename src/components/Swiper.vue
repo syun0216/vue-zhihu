@@ -41,7 +41,7 @@ export default {
       this._props.swiperData.map((val,idx) => {
         let _obj = {
           url:'javascript',
-          img:"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl="+val.image,
+          img:val.image,
           title:val.title,
           id:val.id,
         };
@@ -54,7 +54,7 @@ export default {
       this.demo01_list.map((val,idx)=>{
         if(idx == _this.demo01_index){
           this.$router.push({
-            path: 'con',
+            path: 'content',
             query: {
               id: val.id || ""
             }

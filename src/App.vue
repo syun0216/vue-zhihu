@@ -7,7 +7,7 @@
         <!--这样做是只有你设置了meta: {keepAlive: true}的会被缓存，其他不会缓存。-->
       </keep-alive>
     </transition>
-    <transition>
+    <transition name="fade">
       <router-view v-if="!$route.meta.keepAlive"></router-view>
     </transition>
   </div>
@@ -56,7 +56,11 @@
   {
     opacity: 0
   }
-
+  .app-view {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
   .app-view-hidden {
     overflow: hidden;
   }

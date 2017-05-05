@@ -1,5 +1,7 @@
 <template lang="html">
   <div style="overflow-x: hidden;">
+    <v-toast v-if="newsContent!== null" :tips="tips"></v-toast>
+    <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-loading v-if="isLoading"></v-loading>
     <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
@@ -33,31 +35,32 @@ export default {
       linkcss: null,
       titleImg: null,
       imgArr:[],
-      showBg:false
+      showBg:false,
+      tips:null
     }
   },
   methods: {
     getNewsById(id) {
       this.isLoading = true;
       this.isError = false;
-      let _this = this;
-      api.getNewsById(id).then(function(data) {
-        _this.newsContent = data.data;
-        _this.titleImg = data.data.image || null;
-        if (_this.newsContent.css.length !== 0 && _this.newsContent.css[0] !== null) {
+      api.getNewsById(id).then((data) => {
+        this.newsContent = data.data;
+        this.titleImg = data.data.image || null;
+        this.tips = "加载成功~";
+        if (this.newsContent.css.length !== 0 && this.newsContent.css[0] !== null) {
           let _link = document.createElement("link");
           _link.setAttribute("rel", "stylesheet");
           _link.setAttribute("type", "text/css");
-          _link.setAttribute("href", _this.newsContent.css[0].replace(/http/g,"https"));
-          _this.linkcss = _link;
+          _link.setAttribute("href", this.newsContent.css[0].replace(/http/g,"https"));
+          this.linkcss = _link;
           let _headTag = document.getElementsByTagName("head")[0];
           _headTag.appendChild(_link);
         }
-        _this.isLoading = false;
-//        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g, "src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
-      }, function() {
-        _this.isLoading = false;
-        _this.isError = true;
+        this.isLoading = false;
+      }, () => {
+        this.tips = "加载失败~";
+        this.isLoading = false;
+        this.isError = true;
       })
     },
     clickBack() {
@@ -129,6 +132,9 @@ export default {
 .content {
     font-size: 16px !important;
 }
+.html_content{
+  margin-top:-14px;
+}
 .headline .img-place-holder {
     height: 0 !important;
 }
@@ -156,5 +162,8 @@ export default {
 }
 .dis-none{
   display: none;
+}
+.weui-toast__content{
+  margin:0 !important;
 }
 </style>

@@ -63,8 +63,7 @@ background:white;
     width:80%;
     position: absolute;
     bottom:30%;
-    left: 50%;
-    margin-left:-256/2px;
+    margin-left:10%;
   }
 }
 </style>

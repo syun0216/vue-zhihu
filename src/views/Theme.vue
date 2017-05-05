@@ -1,5 +1,7 @@
 <template lang="html">
   <div>
+     <v-toast v-if="themeData!== null" :tips="tips"></v-toast>
+    <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-iserror v-if="isError" :reload="_getThemeById" :reloadParams="requestData"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
     <div class="titleImg" v-if="themeData != null">
@@ -36,20 +38,22 @@ export default {
       isError:false,
       isLoading:false,
       requestData:{id:null},
-      themeData:null
+      themeData:null,
+      tips:null
     }
   },
   methods:{
     _getThemeById(){
-      let _this = this;
       this.isLoading = true;
-      api.getTopicsById(this.$route.query.id).then(function(data){
-        _this.isLoading = false;
-        _this.themeData = data.data;
-        _this.isError = false;
-      },function(){
-        _this.isLoading = false;
-        _this.isError = true;
+      api.getTopicsById(this.$route.query.id).then((data) => {
+        this.isLoading = false;
+        this.themeData = data.data;
+        this.isError = false;
+        this.tips = "加载成功~";
+      },() => {
+        this.tips = "加载失败~";
+        this.isLoading = false;
+        this.isError = true;
       })
     },
     onClick(id) {

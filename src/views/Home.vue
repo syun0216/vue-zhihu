@@ -1,5 +1,7 @@
 <template lang="html">
   <div>
+    <v-toast v-if="newsData!== null" :tips="tips"></v-toast>
+    <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-iserror v-if="isError" :reload="getNews"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!=null" auto :swiperData="newsData[0].top_stories"></v-swiper>
@@ -8,7 +10,6 @@
         {{nItem.date.substring(0,4)+'年'+nItem.date.substring(4,6)+'月'+nItem.date.substring(6,8)+'日'}}
         <span style="margin-left:5px;">{{nItem.weekday}}</span>
       </div>
-        <!-- <cell :title="nItem.date.substring(0,4)+'/'+nItem.date.substring(4,6)+'/'+nItem.date.substring(6,8)"></cell> -->
       <group style="margin-top:0px" v-for='item in nItem.stories' v-bind:data="item" v-bind:key="item.id">
           <cell :title="item.title" @click.native="onClick(item.id)">
             <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="item.images[0]" />
@@ -37,6 +38,7 @@ export default {
       bottomLoadingError:false,
       isError:false,
       count:1,
+      tips:null
     }
   },
   components: {
@@ -47,29 +49,30 @@ export default {
   methods: {
     getNews(type) {
       this.isError = false;
-      let _this = this;
       if(type){
         this.isLoading = true;
-        api.getNews().then(function(data) {
-          data.data.weekday = _this.setWeekDay(data.data.date);
-          _this.newsData = [];
-          _this.newsData.push(data.data);
-          _this.isLoading = false;
-        },function(){
-          _this.isLoading = false;
-          _this.isError = true;
+        api.getNews().then((data) => {
+          data.data.weekday = this.setWeekDay(data.data.date);
+          this.newsData = [];
+          this.newsData.push(data.data);
+          this.isLoading = false;
+          this.tips = "加载成功~";
+        },() => {
+          this.isLoading = false;
+          this.isError = true;
+          this.tips = "加载失败~";
         })
       }
       else{
-        api.getNewsByDate(_this.getDate(_this.count)).then(function(data){
-          data.data.weekday = _this.setWeekDay(data.data.date);
-          _this.newsData.push(data.data);
-          _this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-        },function(){
-          _this.count --;
-          _this.bottomLoadingError = true;
-          _this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
-      })
+        api.getNewsByDate(this.getDate(this.count)).then((data) => {
+          data.data.weekday = this.setWeekDay(data.data.date);
+          this.newsData.push(data.data);
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+        },() => {
+          this.count --;
+          this.bottomLoadingError = true;
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
+        })
     }},
     onClick(id) {
       this.$router.push({
@@ -83,10 +86,7 @@ export default {
       this.bottomLoading = true;
       this.bottomLoadingError = false;
       this.count ++;
-      let _this = this;
-      setTimeout(function(){
-        _this.getNews();
-      },500);
+      setTimeout(() => this.getNews(),500);
     },
     getDate(count){
       var _date = new Date();
