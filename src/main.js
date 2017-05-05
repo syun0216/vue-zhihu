@@ -12,7 +12,8 @@ const store = new Vuex.Store({
   state:{
     selectedName:null,
     selectedNum:null,
-    scrollerTop:null
+    scrollerTop:null,
+    showSlideBar:null
   },
   mutations:{
     changeSelectedName(state,payload){
@@ -23,6 +24,9 @@ const store = new Vuex.Store({
     },
     changeScrollTop(state,payload){
       state.scrollerTop = payload._top;
+    },
+    changeShowSlideBar(state,payload){
+      state.showSlideBar = payload.isShow;
     }
   }
 });

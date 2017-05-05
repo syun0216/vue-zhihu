@@ -37,11 +37,14 @@ export default {
         this.open = true;
       }else{
         _app.classList.remove('overflow-hidden');
-        let _this = this;
+//        let _this = this;
         this.open = false;
-        setTimeout(function(){
-          _this.docked = false;
-        },500)
+        setTimeout(() => {
+          this.docked = false;
+        },500);
+//        setTimeout(function(){
+//          _this.docked = false;
+//        },500)
       }
     },
     getNewsTopic(){

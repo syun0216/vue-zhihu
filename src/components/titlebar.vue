@@ -54,8 +54,7 @@ export default {
       let _dom = document.getElementById("title");
       if(_top >= 180 && _top <= 420){
         let _opacity = _top/420;
-        _dom.style.background = '#222';
-        _dom.style.opacity = _opacity;
+        _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
       }
       else if(_top < 180){
         _dom.style.background = "linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%)";

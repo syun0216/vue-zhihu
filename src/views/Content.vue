@@ -44,7 +44,7 @@ export default {
       api.getNewsById(id).then(function(data) {
         _this.newsContent = data.data;
         _this.titleImg = data.data.image || null;
-        if (_this.newsContent.css.length != 0 && _this.newsContent.css[0] != null) {
+        if (_this.newsContent.css.length !== 0 && _this.newsContent.css[0] !== null) {
           let _link = document.createElement("link");
           _link.setAttribute("rel", "stylesheet");
           _link.setAttribute("type", "text/css");
@@ -61,15 +61,15 @@ export default {
       })
     },
     clickBack() {
-      let _headTag = document.getElementsByTagName("head")[0];
-      _headTag.removeChild(this.linkcss);
       this.$router.go(-1);
     }
   },
   mounted() {
-    let _this = this;
     this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
+    this.$store.commit("changeShowSlideBar",{
+      isShow:false
+    });
   },
   updated(){
     let _imgArr = document.images;
@@ -90,11 +90,13 @@ export default {
               _divBg.classList.add('dis-none');
               i.classList.remove('active-img');
             });
-            // this.showBg = i.classList.contains('active-img');
-
           })
         }
     }
+  },
+  destroyed(){
+    let _headTag = document.getElementsByTagName("head")[0];
+    _headTag.removeChild(this.linkcss);
   }
 
 }

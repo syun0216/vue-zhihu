@@ -54,7 +54,6 @@ export default {
           data.data.weekday = _this.setWeekDay(data.data.date);
           _this.newsData = [];
           _this.newsData.push(data.data);
-          console.log(_this.newsData);
           _this.isLoading = false;
         },function(){
           _this.isLoading = false;
@@ -74,7 +73,7 @@ export default {
     }},
     onClick(id) {
       this.$router.push({
-        path: 'con',
+        path: 'content',
         query: {
           id: id || ""
         }
@@ -116,8 +115,12 @@ export default {
     }
   },
   mounted() {
-  this.getNews(1);
-  let _this = this;
+    if(this.newsData === null) {
+      this.getNews(1);
+    }
+    this.$store.commit("changeShowSlideBar", {
+      isShow: true
+  })
   },
 
 }
