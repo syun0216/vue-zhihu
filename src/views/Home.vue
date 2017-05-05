@@ -11,7 +11,7 @@
         <!-- <cell :title="nItem.date.substring(0,4)+'/'+nItem.date.substring(4,6)+'/'+nItem.date.substring(6,8)"></cell> -->
       <group style="margin-top:0px" v-for='item in nItem.stories' v-bind:data="item" v-bind:key="item.id">
           <cell :title="item.title" @click.native="onClick(item.id)">
-            <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+item.images[0]" />
+            <img slot="icon" width="80" style="display:block;margin-right:5px;" :src="item.images[0]" />
           </cell>
       </group>
     </div>

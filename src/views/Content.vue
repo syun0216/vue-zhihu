@@ -4,7 +4,7 @@
     <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
       <div class="img_div" v-if="newsContent != null">
-        <img v-if="titleImg !== null" :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+titleImg" alt="">
+        <img v-if="titleImg !== null" :src="titleImg" alt="">
         <h3>{{newsContent.title}}</h3>
       </div>
       <div class="html_content" v-html="newsContent.body" v-if="newsContent != null">
@@ -48,13 +48,13 @@ export default {
           let _link = document.createElement("link");
           _link.setAttribute("rel", "stylesheet");
           _link.setAttribute("type", "text/css");
-          _link.setAttribute("href", _this.newsContent.css[0]);
+          _link.setAttribute("href", _this.newsContent.css[0].replace(/http/g,"https"));
           _this.linkcss = _link;
           let _headTag = document.getElementsByTagName("head")[0];
           _headTag.appendChild(_link);
         }
         _this.isLoading = false;
-        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g, "src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
+//        _this.newsContent.body = _this.newsContent.body.replace(/src=\"/g, "src=\"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=");
       }, function() {
         _this.isLoading = false;
         _this.isError = true;
