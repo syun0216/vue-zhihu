@@ -4,7 +4,7 @@
     <v-loading v-if="isLoading"></v-loading>
     <div class="titleImg" v-if="themeData != null">
       <img :src="themeData.background" alt="">
-      <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description.length>=20 ? themeData.description.substring(0,20)+"..." : themeData.description}}</span></p>
+      <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description}}</span></p>
     </div>
     <div class="_author" v-if="themeData!= null" >
       <span>主编</span>
