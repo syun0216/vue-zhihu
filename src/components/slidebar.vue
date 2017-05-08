@@ -110,7 +110,7 @@ export default {
   }
   #header{
     width:100%;
-    height:2.8rem;
+    height:50px;
     z-index:9;
     position: fixed;
     top:0;
@@ -118,13 +118,13 @@ export default {
      img{
       width:1.5rem;
       position: absolute;
-      top:20%;
+      top:22%;
       left: 5%;
     }
     .p_title{
       text-align: center;
       color:white;
-      margin: 9px;
+      margin: 11px;
       font-weight: bold;
     }
   }

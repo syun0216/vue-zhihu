@@ -72,7 +72,7 @@ export default {
   top:0;
   left: 0;
   width:100%;
-  height: 45px;
+  height: 50px;
   z-index: 999;
   color:white;
   background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.7) 95%);
@@ -82,7 +82,7 @@ export default {
       width:19px;
       position: absolute;
       left: 8px;
-      top:12px;
+      top:15px;
     }
   }
   .share{
@@ -90,12 +90,12 @@ export default {
       width:23px;
       position: absolute;
       right: 12px;
-      top:10px;
+      top:13px;
     }
   }
   .t_content{
     display:inline-block;
-    margin-top: 10px;
+    margin-top: 13px;
     font-size:17px;
     color:white;
   }

@@ -9,7 +9,7 @@
         <img v-if="titleImg !== null" :src="titleImg" alt="">
         <h3>{{newsContent.title}}</h3>
       </div>
-      <div class="html_content" v-html="newsContent.body" v-if="newsContent != null">
+      <div :class="{html_content:titleImg !== null,html_content2 : titleImg === null}" v-html="newsContent.body" v-if="newsContent != null">
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
@@ -135,6 +135,9 @@ export default {
 .html_content{
   margin-top:-14px;
 }
+.html_content2{
+  margin-top:25px;
+}
 .headline .img-place-holder {
     height: 0 !important;
 }
@@ -166,4 +169,8 @@ export default {
 .weui-toast__content{
   margin:0 !important;
 }
+  .content{
+    text-align: left;
+    font-size:14px !important;
+  }
 </style>
