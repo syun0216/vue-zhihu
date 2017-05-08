@@ -10,10 +10,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state:{
-    selectedName:null,
-    selectedNum:null,
+    selectedName:"今日热闻",
+    selectedNum:1,
     scrollerTop:null,
-    showSlideBar:null
+    showSlideBar:null,
+    rememberDate:[]
   },
   mutations:{
     changeSelectedName(state,payload){
@@ -27,6 +28,9 @@ const store = new Vuex.Store({
     },
     changeShowSlideBar(state,payload){
       state.showSlideBar = payload.isShow;
+    },
+    changeDate(state,payload){
+      state.rememberDate = payload._date;
     }
   }
 });

@@ -6,6 +6,7 @@
 
 <script>
 //todo:修改频繁commit store操作
+import {mapState} from 'vuex'
   export default{
     methods: {
       scroller(){
@@ -34,11 +35,19 @@
       let _this = this;
       window.onscroll = function () {
         let _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if(_scrollTop < 300){
+        let _title = document.getElementsByClassName('p_title')[0];
+        if(_this.$route.name === 'home'){
+          _this._rDate.map((val,idx) => {
+             if(_scrollTop >= val.minTop && _scrollTop <= val.maxTop){
+                 _title.innerHTML = val.name;
+             }
+          });
+        }
+         if(_scrollTop < 300){
           _this.$store.commit("changeScrollTop",{
           _top:_scrollTop
         })
-        }
+         }
         let _top = document.getElementById('back-top');
         if (_scrollTop >= 200) {
           _top.style.bottom = 5 + "%";
@@ -47,7 +56,22 @@
           _top.style.bottom = -10 + "%";
         }
       }
-    }
+    },
+    computed:{
+      ...mapState({
+        _rDate : state => state.rememberDate
+      })
+    },
+//    watch:{
+//        _rDate(){
+//            let _title = document.getElementsByClassName('p_title')[0];
+//            this._rDate.map((val,idx) => {
+//                if(val.top === window.scrollY){
+//                    _title.innerHTML = val.name;
+//                }
+//            })
+//        }
+//    }
   }
 </script>
 
@@ -64,7 +88,7 @@
     border-radius: 50px;
     -webkit-transition: all .5s; //设置改变bottom时的动画效果
     -moz-transition: all .5s;
-    -ms-transition: all .5s;
+    /*-ms-transition: all .5s;*/
     -o-transition: all .5s;
     transition: all .5s;
     img {

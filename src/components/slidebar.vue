@@ -37,7 +37,6 @@ export default {
         this.open = true;
       }else{
         _app.classList.remove('overflow-hidden');
-//        let _this = this;
         this.open = false;
         setTimeout(() => {
           this.docked = false;
@@ -58,13 +57,14 @@ export default {
     changeTheme(num,data){
       this.num = num;
       this.titleName = typeof data === 'undefined' ? "今日热闻" : data.name;
+      document.getElementsByClassName("p_title")[0].innerHTML = this.titleName;
       this.$store.commit('changeSelectedName',{
           name:this.titleName
       });
       this.$store.commit('changeSelectedNum',{
           num:this.num
       });
-      let _path = num == 1 ? {path:"home"} : {path:"theme",query:{id:data.id || ""}};
+      let _path = num === 1 ? {path:"home"} : {path:"theme",query:{id:data.id || ""}};
       this.$router.push(_path);
     },
     goGithub(){
@@ -100,7 +100,7 @@ export default {
         }
       }
     }
-  }
+  },
 }
 </script>
 
