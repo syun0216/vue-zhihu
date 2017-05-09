@@ -1,6 +1,6 @@
 <template>
   <span id="back-top" @click="scroller">
-    <img src="../assets/back-top.png" alt="back to top"/>
+    <img src="../assets/TOP.png" alt="back to top"/>
   </span>
 </template>
 
@@ -62,22 +62,12 @@ import {mapState} from 'vuex'
         _rDate : state => state.rememberDate
       })
     },
-//    watch:{
-//        _rDate(){
-//            let _title = document.getElementsByClassName('p_title')[0];
-//            this._rDate.map((val,idx) => {
-//                if(val.top === window.scrollY){
-//                    _title.innerHTML = val.name;
-//                }
-//            })
-//        }
-//    }
   }
 </script>
 
 <style lang="less">
   #back-top {
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to top, rgba(30, 144, 255, .3) 0%, white 95%);
     position: fixed;
     bottom: -10%;
     right: 3%;
@@ -86,6 +76,8 @@ import {mapState} from 'vuex'
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    border-color:rgba(30, 144, 255, 1);
+    box-shadow: 0 2px 3px rgba(30, 144, 255, 1);
     -webkit-transition: all .5s; //设置改变bottom时的动画效果
     -moz-transition: all .5s;
     /*-ms-transition: all .5s;*/
