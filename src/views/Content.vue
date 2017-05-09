@@ -3,11 +3,12 @@
     <v-toast v-if="newsContent!== null" :tips="tips"></v-toast>
     <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-loading v-if="isLoading"></v-loading>
-    <v-title-bar v-if="newsContent != null" :content="newsContent.image_source" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
+    <v-title-bar v-if="newsContent != null" content="文章详情" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
     <!-- <v-content v-if="newsContent != null"> -->
       <div class="img_div" v-if="newsContent != null">
         <img v-if="titleImg !== null" :src="titleImg" alt="">
         <h3>{{newsContent.title}}</h3>
+        <span>图片&nbsp;&nbsp;:&nbsp;&nbsp;{{newsContent.image_source}}</span>
       </div>
       <div :class="{html_content:titleImg !== null,html_content2 : titleImg === null}" v-html="newsContent.body" v-if="newsContent != null">
       </div>
@@ -115,19 +116,28 @@ export default {
     }
     h3 {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
         margin: 0;
         position: absolute;
         bottom: 0;
-        padding: 8px 5px 0;
+        padding: 8px 10px 0;
         color: white;
-        font-size: 17px;
-        font-family: "微软雅黑";
+        font-size: 18px;
         width: 100%;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 95%);
-        height: 46px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 121%);
+        height:72px;
+        text-shadow: 2px 2px 2px black;
+      text-align: left;
     }
+  span{
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size:10px;
+    position: absolute;
+    bottom:5px;
+    right: 10px;
+  }
 }
 .content {
     font-size: 16px !important;
