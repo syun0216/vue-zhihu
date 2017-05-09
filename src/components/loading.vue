@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="d_loading">
     <div class="spinner">
-      <spinner type="ios-small" slot="value"></spinner>
+      <spinner type="lines" slot="value"></spinner>
     </div>
     <p class="loading_content">正在加载中，请稍候...</p>
   </div>
@@ -21,7 +21,7 @@ export default {
   position:fixed;
   width: 100%;
   height: 100%;
-  background:rgba(0,0,0,.7);
+  background:white;
   top:0;
   left: 0;
   z-index: 100;
