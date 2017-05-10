@@ -7,8 +7,12 @@ let apiZhiHu = {
 	topics:'4/themes',
 	topicsbyid:'4/theme/',
 	sections:'3/sections',
-	sectionsbyid:'3/section'
+	sectionsbyid:'3/section',
+	commentbyid:'/story-extra/',
+	comments:'/story/'
 }
+
+const NEW_URL = "https://news-at.zhihu.com/api/4";
 
 export const NewsResource = ROOT_URL.concat( apiZhiHu.news )
 export const NewsIdResource = ROOT_URL.concat( apiZhiHu.newsbyid )
@@ -18,3 +22,7 @@ export const TopicsResource = ROOT_URL.concat( apiZhiHu.topics )
 export const TopicsIdResource = ROOT_URL.concat( apiZhiHu.topicsbyid )
 export const SectionsResource = ROOT_URL.concat( apiZhiHu.sections )
 export const SectionIdResource = ROOT_URL.concat( apiZhiHu.sectionbyid )
+
+export const CommentIdResource = NEW_URL.concat(apiZhiHu.commentbyid)
+export const LongComments = NEW_URL.concat(apiZhiHu.comments)
+export const ShortComments = NEW_URL.concat(apiZhiHu.comments)

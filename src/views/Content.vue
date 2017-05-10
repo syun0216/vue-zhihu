@@ -14,6 +14,7 @@
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
+    <v-comments></v-comments>
     <v-backtop></v-backtop>
 
     <!-- 点击放大图片遮罩 -->
@@ -64,6 +65,15 @@ export default {
         this.isError = true;
       })
     },
+    getComments(id){
+      api.getCommentsById(id).then((data) => {
+        console.log(data);
+      },() => {
+        this.tips = "加载失败~";
+        this.loading = false;
+        this.isError  = false;
+      })
+    },
     clickBack() {
       this.$router.go(-1);
     }
@@ -71,6 +81,7 @@ export default {
   mounted() {
     this.requestData.id = this.$route.query.id;
     this.getNewsById(this.$route.query.id);
+    this.getComments(this.$route.query.id);
     this.$store.commit("changeShowSlideBar",{
       isShow:false
     });

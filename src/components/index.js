@@ -7,6 +7,7 @@ import Slidebar from './slidebar.vue'
 import Bottomloadingerror from './bottomloadingerror.vue'
 import Backtop from './backtop.vue'
 import Toast from './Toast.vue'
+import Comments from './comments.vue'
 
 export default {
   Swiper,
@@ -17,5 +18,6 @@ export default {
   Slidebar,
   Bottomloadingerror,
   Backtop,
-  Toast
+  Toast,
+  Comments
 }

@@ -7,7 +7,10 @@ import {
 	TopicsResource,
 	TopicsIdResource,
 	SectionsResource,
-	SectionIdResource
+	SectionIdResource,
+	CommentIdResource,
+	LongComments,
+	ShortComments
 } from "./config";
 
 export default {
@@ -53,4 +56,13 @@ export default {
 			}
 		} )
 	},
+	getCommentsById(id){
+		return axios.get( CommentIdResource + id)
+	},
+	getLongComments(id){
+		return axios.get( LongComments + id + "/long-comments");
+	},
+	getShortComments(id){
+		return axios.get( ShortComments + id + "/short-comments");
+	}
 }
