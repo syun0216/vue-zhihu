@@ -1,7 +1,6 @@
 <template>
 	<div>
 		    <toast v-model="a" type="text" :time="1000" is-show-mask :text="tips" :position="position"></toast>
-
 	</div>
 </template>
 <script type="text/javascript">

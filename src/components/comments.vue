@@ -1,15 +1,15 @@
 <template lang="html">
   <div class="comments">
     <ul>
-      <li><img src="../assets/new/back.png" alt=""></li>
-      <li><img src="../assets/new/share.png" alt=""></li>
-      <li>
+      <li @click="goBack()"><img src="../assets/new/back.png" alt=""></li>
+      <li @click="goShare()"><img src="../assets/new/share.png" alt=""></li>
+      <li @click="goLike()">
         <img src="../assets/new/like.png" alt="">
-        <span class="count">47</span>
+        <span class="count">{{data.data.popularity}}</span>
       </li>
       <li>
         <img src="../assets/new/comment.png" alt="">
-        <span class="count-plus">14</span>
+        <span class="count-plus">{{data.data.comments}}</span>
       </li>
     </ul>
   </div>
@@ -17,11 +17,37 @@
 
 <script>
 export default {
-  data(){
-
-  },
   props:{
-
+    data:{
+      default:null,
+      type:Object
+    },
+    backFunc:{
+      default:null,
+      type:Function
+    },
+    shareUrl:{
+      type:String,
+      default:null
+    },
+  },
+  methods:{
+    goBack(){
+      if(this.$props.backFunc == null){
+        this.$router.go(-1);
+      }
+      else{
+        this.$props.backFunc();
+      }
+    },
+  goShare(){
+    if(this.shareUrl){
+      window.open(this.shareUrl);
+    }
+  },
+    goLike(){
+      this.$emit('goLike',this.goLike);
+    }
   }
 }
 </script>

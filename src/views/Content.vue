@@ -2,8 +2,9 @@
   <div style="overflow-x: hidden;">
     <v-toast v-if="newsContent!== null" :tips="tips"></v-toast>
     <v-toast v-if="isError" :tips="tips"></v-toast>
+    <v-toast v-if="isLike" :tips="tips"></v-toast>
     <v-loading v-if="isLoading"></v-loading>
-    <v-title-bar v-if="newsContent != null" content="文章详情" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>
+    <!--<v-title-bar v-if="newsContent != null" content="文章详情" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>-->
     <!-- <v-content v-if="newsContent != null"> -->
       <div class="img_div" v-if="newsContent != null">
         <img v-if="titleImg !== null" :src="titleImg" alt="">
@@ -14,7 +15,7 @@
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
-    <v-comments></v-comments>
+    <v-comments v-if="commentsData !== null && newsContent !== null" v-on:goLike="getLike" :data="commentsData" :shareUrl="newsContent.share_url"></v-comments>
     <v-backtop></v-backtop>
 
     <!-- 点击放大图片遮罩 -->
@@ -38,7 +39,9 @@ export default {
       titleImg: null,
       imgArr:[],
       showBg:false,
-      tips:null
+      tips:null,
+      commentsData:null,
+      isLike:false
     }
   },
   methods: {
@@ -65,9 +68,14 @@ export default {
         this.isError = true;
       })
     },
+    getLike(){
+        this.isLike = true;
+        this.tips = "此功能暂未开放！";
+        console.log("like click");
+    },
     getComments(id){
       api.getCommentsById(id).then((data) => {
-        console.log(data);
+       this.commentsData = data;
       },() => {
         this.tips = "加载失败~";
         this.loading = false;

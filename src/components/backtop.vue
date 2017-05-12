@@ -50,7 +50,7 @@ import {mapState} from 'vuex'
          }
         let _top = document.getElementById('back-top');
         if (_scrollTop >= 200) {
-          _top.style.bottom = 5 + "%";
+          _top.style.bottom = 10 + "%";
         }
         else {
           _top.style.bottom = -10 + "%";
