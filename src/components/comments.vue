@@ -104,8 +104,12 @@ export default {
   color: white;
   background: #1e90ff;
   font-size: 13px;
-  width: 10p;
+  /*width: 10px;*/
   width: 26px;
   height: 17px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
