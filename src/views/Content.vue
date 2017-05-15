@@ -4,16 +4,13 @@
     <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-toast v-if="isLike" :tips="tips"></v-toast>
     <v-loading v-if="isLoading"></v-loading>
-    <!--<v-title-bar v-if="newsContent != null" content="文章详情" :shareUrl="newsContent.share_url" :backFunc="clickBack"></v-title-bar>-->
-    <!-- <v-content v-if="newsContent != null"> -->
-      <div class="img_div" v-if="newsContent != null">
-        <img v-if="titleImg !== null" :src="titleImg" alt="">
+      <div class="img_div" v-if="newsContent != null && titleImg !== null" :style="{backgroundImage:'url('+titleImg+')'}">
+        <!-- <img v-if="titleImg !== null" :src="titleImg" alt=""> -->
         <h3>{{newsContent.title}}</h3>
         <span>图片&nbsp;&nbsp;:&nbsp;&nbsp;{{newsContent.image_source}}</span>
       </div>
       <div :class="{html_content:titleImg !== null,html_content2 : titleImg === null}" v-html="newsContent.body" v-if="newsContent != null">
       </div>
-    <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
     <v-comments v-if="commentsData !== null && newsContent !== null" v-on:goLike="getLike" :data="commentsData" v-on:goComments="goComments" :shareUrl="newsContent.share_url"></v-comments>
     <v-backtop></v-backtop>
@@ -139,6 +136,10 @@ export default {
     width: 100%;
     position: relative;
     margin-bottom: 15px;
+    height:150px;
+    background-position: center;
+    background-position: 0px -60px;
+    background-size: cover;
     img {
         width: 100%;
     }
@@ -174,7 +175,7 @@ export default {
   margin-top:-14px;
 }
 .html_content2{
-  margin-top:25px;
+  margin-top:0px;
 }
 .headline .img-place-holder {
     height: 0 !important;

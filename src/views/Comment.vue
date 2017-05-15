@@ -71,7 +71,7 @@ export default {
           let __top = document.getElementById('s-title').offsetTop - 50;
           let timer = setInterval(()=>{
               if(_top < __top){
-                  _top += 10;
+                  _top += 15;
                   window.scrollTo(0,_top);
               }
               else{
@@ -105,18 +105,17 @@ export default {
       width: 22px;
       position: absolute;
       right: 31px;
+      top: 10px;
     }
   }
   .comment-content{
     position: relative;
     padding:15px;
     overflow: hidden;
-    /*border-top:1px solid #ccc;*/
     border-bottom:1px solid #ccc;
     .author-comment{
       position: absolute;
       width: 10%;
-      /*height: 100px;*/
       margin-right:10px;
       img{
         width: 32px;
@@ -134,7 +133,7 @@ export default {
         img{
           float: right;
           width: 22px;
-          margin-top:-4px;
+          margin-top:-2px;
         }
         span{
           float: right;

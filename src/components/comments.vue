@@ -61,7 +61,7 @@ export default {
   bottom:0;
   left: 0;
   width:100%;
-  height:40px;
+  height:50px;
   background:white;
   z-index: 100;
   border-top:1px solid #ccc;
@@ -69,6 +69,7 @@ export default {
     margin:0;
     padding:0;
     list-style-type: none;
+    height:50px;
     display: flex;
     align-items: center;
     justify-content: center;
