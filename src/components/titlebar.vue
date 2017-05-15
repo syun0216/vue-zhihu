@@ -43,25 +43,25 @@ export default {
       }
     }
   },
-  computed:{
-    ...mapState({
-      scrollerTop:state => state.scrollerTop
-    })
-  },
-  watch:{
-    scrollerTop(){
-      let _top = this.scrollerTop;
-      let _dom = document.getElementById("title");
-      if(_top >=90 && _top <= 300){
-        let _opacity = _top/300;
-        _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
-      }
-      else if(_top < 180){
-        _dom.style.background = "linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%)";
-        _dom.style.opacity = 1;
-      }
-    }
-  }
+//  computed:{
+//    ...mapState({
+//      scrollerTop:state => state.scrollerTop
+//    })
+//  },
+//  watch:{
+//    scrollerTop(){
+//      let _top = this.scrollerTop;
+//      let _dom = document.getElementById("title");
+//      if(_top >=90 && _top <= 300){
+//        let _opacity = _top/300;
+//        _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
+//      }
+//      else if(_top < 180){
+//        _dom.style.background = "linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%)";
+//        _dom.style.opacity = 1;
+//      }
+//    }
+//  }
 
 }
 </script>
@@ -75,7 +75,7 @@ export default {
   height: 50px;
   z-index: 999;
   color:white;
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.7) 95%);
+  background: rgba(30, 144, 255,1);
   .back{
     width:15px;
     img{

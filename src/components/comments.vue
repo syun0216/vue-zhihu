@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="comments">
+  <div class="comments" style="overflow-x:hidden ">
     <ul>
       <li @click="goBack()"><img src="../assets/new/back.png" alt=""></li>
       <li @click="goShare()"><img src="../assets/new/share.png" alt=""></li>
@@ -29,10 +29,6 @@ export default {
     shareUrl:{
       type:String,
       default:null
-    },
-    commentsId:{
-      type:Number,
-      default:null
     }
   },
   methods:{
@@ -53,12 +49,7 @@ export default {
       this.$emit('goLike',this.goLike);
     },
     goComments(){
-      this.$router.push({
-        path: 'comment',
-        query: {
-          id: this.commentsId || ""
-        }
-      });
+        this.$emit('goComments',this.goComments);
     }
   }
 }

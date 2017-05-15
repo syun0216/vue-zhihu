@@ -15,7 +15,7 @@
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
-    <v-comments v-if="commentsData !== null && newsContent !== null" v-on:goLike="getLike" :data="commentsData" :shareUrl="newsContent.share_url" :commentsId='requestData.id'></v-comments>
+    <v-comments v-if="commentsData !== null && newsContent !== null" v-on:goLike="getLike" :data="commentsData" v-on:goComments="goComments" :shareUrl="newsContent.share_url"></v-comments>
     <v-backtop></v-backtop>
 
     <!-- 点击放大图片遮罩 -->
@@ -72,6 +72,15 @@ export default {
         this.isLike = true;
         this.tips = "此功能暂未开放！";
         console.log("like click");
+    },
+    goComments(){
+      this.$router.push({
+        path: 'comment',
+        query: {
+          id: this.requestData.id || "",
+          comments:this.commentsData.data.comments
+        }
+      });
     },
     getComments(id){
       api.getCommentsById(id).then((data) => {
