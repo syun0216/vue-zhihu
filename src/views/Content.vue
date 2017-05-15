@@ -15,7 +15,7 @@
       </div>
     <!-- </v-content> -->
     <v-iserror v-if="isError" :reload="getNewsById" :reloadParams="requestData"></v-iserror>
-    <v-comments v-if="commentsData !== null && newsContent !== null" v-on:goLike="getLike" :data="commentsData" :shareUrl="newsContent.share_url"></v-comments>
+    <v-comments v-if="commentsData !== null && newsContent !== null" v-on:goLike="getLike" :data="commentsData" :shareUrl="newsContent.share_url" :commentsId='requestData.id'></v-comments>
     <v-backtop></v-backtop>
 
     <!-- 点击放大图片遮罩 -->

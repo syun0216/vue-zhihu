@@ -7,7 +7,7 @@
         <img src="../assets/new/like.png" alt="">
         <span class="count">{{data.data.popularity}}</span>
       </li>
-      <li>
+      <li @click="goComments()">
         <img src="../assets/new/comment.png" alt="">
         <span class="count-plus">{{data.data.comments}}</span>
       </li>
@@ -30,6 +30,10 @@ export default {
       type:String,
       default:null
     },
+    commentsId:{
+      type:Number,
+      default:null
+    }
   },
   methods:{
     goBack(){
@@ -47,6 +51,14 @@ export default {
   },
     goLike(){
       this.$emit('goLike',this.goLike);
+    },
+    goComments(){
+      this.$router.push({
+        path: 'comment',
+        query: {
+          id: this.commentsId || ""
+        }
+      });
     }
   }
 }

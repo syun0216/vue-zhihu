@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import home from '@/views/Home'
 import content from '@/views/Content'
 import theme from '@/views/Theme'
+import comments from '@/views/Comment'
 
 Vue.use(Router)
 
@@ -20,6 +21,16 @@ export default new Router({
 			component: content,
 			name: 'content',
       meta: {keepAlive: false},
+      children:[
+        {
+          path:'comment',
+          component:comments,
+          name:'comment',
+          meta:{
+            keepAlive:true
+          }
+        }
+      ]
 		},
 		{
 			path: '/theme',
