@@ -62,9 +62,6 @@ import {mapState} from 'vuex'
         _rDate : state => state.rememberDate
       })
     },
-    destroyed(){
-      window.onscroll = null;
-    }
   }
 </script>
 
