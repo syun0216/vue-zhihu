@@ -8,6 +8,7 @@ import Bottomloadingerror from './bottomloadingerror.vue'
 import Backtop from './backtop.vue'
 import Toast from './Toast.vue'
 import Comments from './comments.vue'
+import Startupinterface from './startupinterface.vue'
 
 export default {
   Swiper,
@@ -19,5 +20,6 @@ export default {
   Bottomloadingerror,
   Backtop,
   Toast,
-  Comments
+  Comments,
+  Startupinterface
 }

@@ -10,7 +10,8 @@ import {
 	SectionIdResource,
 	CommentIdResource,
 	LongComments,
-	ShortComments
+	ShortComments,
+  ImgUrl
 } from "./config";
 
 export default {
@@ -64,5 +65,8 @@ export default {
 	},
 	getShortComments(id){
 		return axios.get( ShortComments + id + "/short-comments");
-	}
+	},
+  getFirstPageImg(){
+	  return axios.get( ImgUrl );
+  }
 }

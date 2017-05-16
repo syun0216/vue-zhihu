@@ -1,10 +1,12 @@
 <template lang="html">
   <div>
+
     <v-toast v-if="newsData!== null" :tips="tips"></v-toast>
     <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-iserror v-if="isError" :reload="getNews"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!==null" auto :swiperData="newsData[0].top_stories"></v-swiper>
+    <v-startupinterface :loadReady="startUpPicLoadReady"></v-startupinterface>
     <div v-if="newsData !== null" v-for="(nItem,index) in newsData">
       <div class="time_tips">
         {{nItem.date.substring(0,4)+'年'+nItem.date.substring(4,6)+'月'+nItem.date.substring(6,8)+'日'}}
@@ -40,7 +42,8 @@ export default {
       isError:false,
       count:1,
       tips:null,
-      _rDate:null
+      _rDate:null,
+      startUpPicLoadReady:false
     }
   },
   components: {
