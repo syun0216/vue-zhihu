@@ -6,7 +6,6 @@
     <v-iserror v-if="isError" :reload="getNews"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
     <v-swiper v-if="newsData!==null" auto :swiperData="newsData[0].top_stories"></v-swiper>
-    <v-startupinterface :loadReady="startUpPicLoadReady"></v-startupinterface>
     <div v-if="newsData !== null" v-for="(nItem,index) in newsData">
       <div class="time_tips">
         {{nItem.date.substring(0,4)+'年'+nItem.date.substring(4,6)+'月'+nItem.date.substring(6,8)+'日'}}
@@ -42,8 +41,7 @@ export default {
       isError:false,
       count:1,
       tips:null,
-      _rDate:null,
-      startUpPicLoadReady:false
+      _rDate:null
     }
   },
   components: {
@@ -175,4 +173,12 @@ export default {
 .vux-swiper-desc{
   padding: 20px 50px 32px 13px !important;
 }
+  .v-enter{
+    transform: translate(100vw, 0);
+    transition: transform 1s;
+  }
+  .v-leave{
+    transform: translate(-100vw, 0);
+    transition: transform 1s;
+  }
 </style>

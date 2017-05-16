@@ -5,13 +5,20 @@ import home from '@/views/Home'
 import content from '@/views/Content'
 import theme from '@/views/Theme'
 import comments from '@/views/Comment'
+import startupinterface from '@/views/startupinterface'
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-			path: '/',
+      path:'/',
+      component:startupinterface,
+      name:'startupinterface',
+      meta:{keepAlive:false}
+    },
+    {
+			path: '/home',
 			component: home,
 			name: 'home',
       meta: {keepAlive: true},
