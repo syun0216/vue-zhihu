@@ -3,7 +3,7 @@
     <v-loading v-if="isLoading"></v-loading>
     <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-iserror v-if="isError" :reload="getImg"></v-iserror>
-    <div class="startup" v-if="!isLoading">
+    <div class="startup" v-if="imgSrc !== null">
       <div>
         <p :class="{transitionLeft:isHide}">知乎日报 by Syun</p>
         <img :src="imgSrc" alt="" :class="{transitionLeft:isHide}">
