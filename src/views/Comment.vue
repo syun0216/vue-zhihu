@@ -1,7 +1,7 @@
 <template lang="html">
   <div style="overflow-x: hidden">
       <v-loading v-if="shortComments === null || longComments === null"></v-loading>
-      <v-title-bar v-if="shortComments !== null || longComments !== null"  :content="comments"></v-title-bar>
+      <v-title-bar v-if="shortComments !== null && longComments !== null"  :content="comments"></v-title-bar>
       <div class="comment-title" style="margin-top:50px;" v-if="longComments !== null">
           {{longComments.length}}条长评
       </div>
@@ -15,7 +15,7 @@
       </div>
       <div id="s-title" class="comment-title" style="margin-top:10px;" v-if="shortComments !== null">
          <span>{{shortComments.length}}条最新短评</span>
-          <img src="../assets/new/doubledown.png" alt="doubledown" @click="showShortComments">
+          <img :src="imgSrc" :class="{transition_arrow:isShowShort,transition_arrow_back:!isShowShort}" alt="doubledown" @click="showShortComments">
       </div>
       <div class="comment-content" v-for="item in shortComments" v-if="shortComments !== null && isShowShort">
           <div class="author-comment"><img :src="item.avatar" alt="a"></div>
@@ -38,7 +38,7 @@ export default {
         shortComments:null,
         comments:null,
         isShowShort:false,
-        imgSrc:"../assets/new/doubledown.png"
+        imgSrc:require("../assets/new/doubledown.png")
       }
     },
     methods:{
@@ -59,14 +59,14 @@ export default {
             })
         },
       getLocalDate(ns){
-            ns.map((val,idx) => {
+            ns.map((val) => {
                val.time =  new Date(parseInt(val.time) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
             });
             return ns;
     },
       showShortComments(){
           this.isShowShort = ! this.isShowShort;
-          this.imgSrc = "../assets/new/doubleup.png";
+//          this.imgSrc = this.isShowShort ? require("../assets/new/doubleup.png") :require("../assets/new/doubledown.png");
           let _top = document.documentElement.scrollTop || document.body.scrollTop;
           let __top = document.getElementById('s-title').offsetTop - 50;
           let timer = setInterval(()=>{
@@ -150,8 +150,14 @@ export default {
           color:#ccc;
         }
       }
-      /*float: left;*/
-      /*height: 100px;*/
     }
+  }
+  .transition_arrow{
+    transform: rotate(180deg);
+    transition: transform .5s;
+  }
+  .transition_arrow_back{
+    transform: rotate(0deg);
+    transition: transform .5s;
   }
 </style>

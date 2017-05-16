@@ -85,7 +85,7 @@ export default {
       },() => {
         this.tips = "加载失败~";
         this.loading = false;
-        this.isError  = false;
+        this.isError  = true;
       })
     },
     clickBack() {
@@ -137,7 +137,6 @@ export default {
     position: relative;
     margin-bottom: 15px;
     height:150px;
-    background-position: center;
     background-position: 0px -60px;
     background-size: cover;
     img {
@@ -175,7 +174,7 @@ export default {
   margin-top:-14px;
 }
 .html_content2{
-  margin-top:0px;
+  margin-top:0;
 }
 .headline .img-place-holder {
     height: 0 !important;
@@ -184,7 +183,6 @@ export default {
   position:fixed;
   top:30%;
   left: 0;
-  z-index: 20;
   transition:transform .5s;
   transform: scale(1.1);
   z-index:999;

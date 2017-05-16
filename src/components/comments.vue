@@ -2,12 +2,12 @@
   <div class="comments" style="overflow-x:hidden ">
     <ul>
       <li @click="goBack()"><img src="../assets/new/back.png" alt=""></li>
-      <li @click="goShare()"><img src="../assets/new/share.png" alt=""></li>
-      <li @click="goLike()">
+      <li @click="goShare()" v-if="shareUrl !== null"><img src="../assets/new/share.png" alt=""></li>
+      <li @click="goLike()" v-if="data !== null">
         <img src="../assets/new/like.png" alt="">
         <span class="count">{{data.data.popularity}}</span>
       </li>
-      <li @click="goComments()">
+      <li @click="goComments()" v-if="data !== null">
         <img src="../assets/new/comment.png" alt="">
         <span class="count-plus">{{data.data.comments}}</span>
       </li>
