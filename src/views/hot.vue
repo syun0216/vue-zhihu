@@ -73,9 +73,7 @@ export default {
   width:100%;
   position:relative;
   height: 100px;
-  background-image: url("./../assets/bg.jpeg");
-  background-size: cover;
-  background-position: 22px;
+  background:#723e36;
   img{
     width:100%;
   }
@@ -84,13 +82,12 @@ export default {
     width:100%;
     text-align: right;
     margin: 0;
-    bottom:-1px;
-    background: transparent;
-    right:5px;
+    bottom:0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.00) 5%, rgba(0,0,0,0.8) 95%);
     font-size:1.5em;
-    background: transparent;
     color:white;
     padding-bottom: 5px;
+    height:42px;
     span{
       margin-right: 10px;
     }
