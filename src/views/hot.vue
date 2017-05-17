@@ -1,6 +1,8 @@
 <template lang="html">
   <div>
     <v-loading v-if="isLoading"></v-loading>
+    <v-toast v-if="hotData!== null" :tips="tips"></v-toast>
+    <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-iserror v-if="isError" :reload="_getHotNews"></v-iserror>
     <!-- hotnews -->
     <div class="hot_title_img" v-if="hotData !== null">
@@ -29,7 +31,8 @@ export default {
     return{
       isLoading:null,
       isError:false,
-      hotData:null
+      hotData:null,
+      tips:null
     }
   },
   components:{
