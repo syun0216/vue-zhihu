@@ -6,6 +6,7 @@ import content from '@/views/Content'
 import theme from '@/views/Theme'
 import comments from '@/views/Comment'
 import startupinterface from '@/views/startupinterface'
+import hot from '@/views/hot.vue'
 
 Vue.use(Router);
 
@@ -21,7 +22,7 @@ export default new Router({
 			path: '/home',
 			component: home,
 			name: 'home',
-      meta: {keepAlive: true},
+      meta: {keepAlive: false},
 		},
 		{
 			path: '/content',
@@ -36,11 +37,17 @@ export default new Router({
       meta: {keepAlive: true},
 		},
     {
+      path:'/hot',
+      component:hot,
+      name:'hot',
+      meta:{ keepAlive:true},
+    },
+    {
       path:'/comment',
       component:comments,
       name:'comment',
       meta:{
-        keepAlive:false
+        keepAlive:true
       }
     },
 		{

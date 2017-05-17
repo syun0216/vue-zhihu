@@ -29,3 +29,4 @@ export const LongComments = ROOT_URL.concat(apiZhiHu.comments);
 export const ShortComments = ROOT_URL.concat(apiZhiHu.comments);
 
 export const ImgUrl = "https://zhihu-agent.herokuapp.com/get?api=/7/prefetch-launch-images/1080*1920";
+export const HotUrl = "https://zhihu-agent.herokuapp.com/get?api=/3/news/hot";

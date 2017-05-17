@@ -1,27 +1,28 @@
 <template lang="html">
   <div>
-     <v-toast v-if="themeData!== null" :tips="tips"></v-toast>
+     <v-toast v-if="themeData!== null && !isError" :tips="tips"></v-toast>
     <v-toast v-if="isError" :tips="tips"></v-toast>
-    <v-iserror v-if="isError" :reload="_getThemeById" :reloadParams="requestData"></v-iserror>
+    <v-iserror v-if="isError && themeData === null" :reload="_getThemeById" :reloadParams="requestData"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
-    <div class="titleImg" v-if="themeData != null">
+    <div class="titleImg" v-if="!isError && themeData !== null">
       <img :src="themeData.background" alt="">
       <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description}}</span></p>
     </div>
-    <div class="_author" v-if="themeData!= null" >
+    <div class="_author" v-if="!isError && themeData !== null" >
       <span>主编</span>
       <div v-for="author in themeData.editors" style="display: inline-block">
       <img :src="author.avatar" alt="author" />
-      <!--<span>{{author.name}}</span>-->
       </div>
     </div>
-    <div v-if="themeData != null">
+    <div v-if="!isError  && themeData !== null">
       <group v-if="themeData != null" v-for='item in themeData.stories' v-bind:data="item" v-bind:key="item.id">
         <cell :title="item.title" @click.native="onClick(item.id)">
           <img v-if="typeof item.images != 'undefined'" slot="icon" width="80" style="display:block;margin-right:5px;" :src="item.images[0]" />
         </cell>
       </group>
     </div>
+
+
     <v-backtop></v-backtop>
   </div>
 </template>
@@ -39,22 +40,23 @@ export default {
       isLoading:false,
       requestData:{id:null},
       themeData:null,
-      tips:null
+      tips:null,
+      hotData:null
     }
   },
   methods:{
     _getThemeById(){
       this.isLoading = true;
-      api.getTopicsById(this.$route.query.id).then((data) => {
-        this.isLoading = false;
-        this.themeData = data.data;
-        this.isError = false;
-        this.tips = "加载成功~";
-      },() => {
-        this.tips = "加载失败~";
-        this.isLoading = false;
-        this.isError = true;
-      })
+        api.getTopicsById(this.$route.query.id).then((data) => {
+          this.isLoading = false;
+          this.isError = typeof data.data.stories === "undefined";
+          this.themeData = data.data;
+          this.tips = this.isError ? "加载失败" : "加载成功~";
+        },() => {
+          this.tips = "加载失败~";
+          this.isLoading = false;
+          this.isError = true;
+        })
     },
     onClick(id) {
       this.$router.push({
@@ -76,11 +78,13 @@ export default {
     Cell,
     Group
   },
+  activated(){
+    this.themeData = null;
+    this.hotData = null;
+  },
   mounted(){
     this.requestData.id = this.$route.query.id;
-    if(this.themeData === null){
-      this._getThemeById(this.$route.query.id);
-    }
+    this._getThemeById(this.$route.query.id);
     this.$store.commit("changeShowSlideBar",{
       isShow:true
     })
@@ -91,7 +95,6 @@ export default {
 <style lang="less">
 .titleImg{
   width:100%;
-  /*height:270px;*/
   position:relative;
   img{
     width:100%;

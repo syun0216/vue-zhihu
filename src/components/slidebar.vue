@@ -7,6 +7,7 @@
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()" v-if="themeData != null">
       <ul>
         <li :class="{active:num == 1}" @click="changeTheme(1)">首页 <img v-if="num == 1" src="./../assets/check.png" alt="check"></li>
+        <li :class="{active:num == 14}" @click="changeTheme(14)">最热讨论 <img v-if='num === 14' src="./../assets/check.png" alt="check"></li>
         <li :class="{active:num == index+2}" v-for="(item,index) in themeData" @click="changeTheme(index+2,item)">{{item.name}}<img v-if="num == index + 2" src="./../assets/check.png" alt="check"></li>
         <li @click="goGithub()"><img src="./../assets/github.png" alt="github"><div>syun0216</div></li>
       </ul>
@@ -41,9 +42,6 @@ export default {
         setTimeout(() => {
           this.docked = false;
         },500);
-//        setTimeout(function(){
-//          _this.docked = false;
-//        },500)
       }
     },
     getNewsTopic(){
@@ -56,7 +54,12 @@ export default {
     },
     changeTheme(num,data){
       this.num = num;
-      this.titleName = typeof data === 'undefined' ? "今日热闻" : data.name;
+      if(typeof data === 'undefined'){
+        this.titleName = num === 1 ? "今日热闻" : "最热讨论";
+      }
+      else{
+        this.titleName = data.name;
+      }
       document.getElementsByClassName("p_title")[0].innerHTML = this.titleName;
       this.$store.commit('changeSelectedName',{
           name:this.titleName
@@ -64,7 +67,7 @@ export default {
       this.$store.commit('changeSelectedNum',{
           num:this.num
       });
-      let _path = num === 1 ? {path:"home"} : {path:"theme",query:{id:data.id || ""}};
+      let _path = num === 1 ? {path:"home"} : num === 14 ? {path:"hot"} : {path:"theme",query:{id:data.id || ""}};
       this.$router.push(_path);
     },
     goGithub(){
@@ -87,7 +90,7 @@ export default {
     scrollerTop(){
       let _top = this.scrollerTop;
       let _dom = document.getElementById("header");
-      if(this.$route.name === 'home'){
+      if(this.$route.name === 'home' || this.$route.name === 'hot'){
         if(_top <= 180){
           let _opacity = _top/180;
           _dom.style.background = `rgba(30, 144, 255, ${_opacity})`;
@@ -114,7 +117,6 @@ export default {
     z-index:9;
     position: fixed;
     top:0;
-    // background: linear-gradient(0deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.6) 95%);
      img{
       width:1.5rem;
       position: absolute;
@@ -150,7 +152,7 @@ export default {
       width:50%;
       height: 100%;
       overflow: auto;
-      padding: 1.3rem 0.5rem 0.5rem;
+      padding: 0.5rem 0.5rem 0.5rem;
       background:#222;
       opacity: 0.8;
       transform: translate(-100%,0);
@@ -170,7 +172,6 @@ export default {
           list-style: none;
           color:#fff;
           margin: 11% 9px;
-          // padding-bottom:2px;
           width:140px;
           text-align: left;
           .iconfont {

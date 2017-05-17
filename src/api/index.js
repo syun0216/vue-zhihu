@@ -11,7 +11,8 @@ import {
 	CommentIdResource,
 	LongComments,
 	ShortComments,
-  ImgUrl
+  ImgUrl,
+	HotUrl
 } from "./config";
 
 export default {
@@ -68,5 +69,8 @@ export default {
 	},
   getFirstPageImg(){
 	  return axios.get( ImgUrl );
-  }
+  },
+	getHotNews(){
+		return axios.get( HotUrl );
+	}
 }
