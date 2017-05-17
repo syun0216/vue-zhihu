@@ -63,7 +63,7 @@ export default {
           this.tips = "加载成功~";
           let _dateAll = "今日热闻";
           let _minTop = 180 + 31 - 45;
-          let _maxTop =  _minTop + 80 * data.data.stories.length;
+          let _maxTop =  _minTop + 100 * data.data.stories.length;
           this._rDate.push({
             name:_dateAll,
             minTop:_minTop,
@@ -85,7 +85,7 @@ export default {
           let _dateAll = data.data.date.substring(4,6)+'月'+
             data.data.date.substring(6,8)+'日' + "   " + data.data.weekday;
           let _minTop = this._rDate[this._rDate.length-1].maxTop + 31;
-          let _maxTop = _minTop + 80 * data.data.stories.length;
+          let _maxTop = _minTop + 100 * data.data.stories.length;
           this._rDate.push({
             name:_dateAll,
             minTop:_minTop,
