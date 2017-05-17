@@ -47,7 +47,7 @@ export default new Router({
       component:comments,
       name:'comment',
       meta:{
-        keepAlive:true
+        keepAlive:false
       }
     },
 		{
