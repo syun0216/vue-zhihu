@@ -72,8 +72,10 @@ export default {
 .hot_title_img{
   width:100%;
   position:relative;
-  height: 100px;
-  background:#723e36;
+  height: 180px;
+  background-image: url("https://static.vux.li/demo/1.jpg");
+  background-size: cover;
+  background-position: 22px;
   img{
     width:100%;
   }
@@ -82,12 +84,13 @@ export default {
     width:100%;
     text-align: right;
     margin: 0;
-    bottom:0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.00) 5%, rgba(0,0,0,0.8) 95%);
+    bottom:-1px;
+    background: transparent;
+    right:5px;
     font-size:1.5em;
+    background: transparent;
     color:white;
     padding-bottom: 5px;
-    height:42px;
     span{
       margin-right: 10px;
     }

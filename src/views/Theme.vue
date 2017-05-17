@@ -4,8 +4,8 @@
     <v-toast v-if="isError" :tips="tips"></v-toast>
     <v-iserror v-if="isError" :reload="_getThemeById" :reloadParams="requestData"></v-iserror>
     <v-loading v-if="isLoading"></v-loading>
-    <div class="titleImg" v-if="themeData !== null">
-      <img :src="themeData.background" alt="">
+    <div class="titleImg" v-if="themeData !== null" :style="{backgroundImage:'url('+themeData.background+')'}">
+      <!-- <img :src="themeData.background" alt=""> -->
       <p><span>{{themeData.name}}</span><br><span style="font-size:0.6em">{{themeData.description}}</span></p>
     </div>
     <div class="_author" v-if="themeData !== null" >
@@ -41,7 +41,8 @@ export default {
       requestData:{id:null},
       themeData:null,
       tips:null,
-      hotData:null
+      hotData:null,
+      background:null
     }
   },
   methods:{
@@ -94,8 +95,11 @@ export default {
 
 <style lang="less">
 .titleImg{
-  width:100%;
-  position:relative;
+    width: 100%;
+    position:relative;
+    height: 180px;
+    background-size: cover;
+    background-position: 0px -50px;
   img{
     width:100%;
   }
@@ -104,7 +108,7 @@ export default {
     width:100%;
     text-align: right;
     margin: 0;
-    bottom:5px;
+    bottom:0;
     right:0;
     font-size:1.5em;
     background: linear-gradient(to bottom, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.8) 95%);
@@ -128,10 +132,13 @@ export default {
     vertical-align: sub;
     margin:0 10px 0 20px;
   }
+  span{
+    text-shadow: 0px 1px 1px !important;
+  }
 }
-.weui-cell{
-  padding:0 !important;
-}
+// .weui-cell{
+//   padding:0 !important;
+// }
 .vux-no-group-title{
   font-size:14px;
   text-align: left;

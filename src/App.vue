@@ -81,10 +81,13 @@
     margin-top: 0 !important;
   }
 
-  .weui-cell {
+  /*.weui-cell {
     padding: 0 !important;
+  }*/
+  .vux-label {
+      margin: 0 4px 0 7px;
+      text-shadow: 0px 1px 1px !important;
   }
-
   .vux-no-group-title {
     font-size: 14px;
   }
