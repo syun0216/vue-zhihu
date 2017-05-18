@@ -26,9 +26,11 @@
     },
     methods: {
       getImg(){
+
+
         api.getFirstPageImg().then((data) => {
           if (data.data === null || data.data.creatives.length === 0) {
-            this.imgSrc = require("./../assets/startup.jpg");
+            this.imgSrc = this.imgSrc = "https://pic3.zhimg.com/v2-5af460972557190bd4306ad66f360d4a.jpg";
           }
           else {
             this.imgSrc = data.data.creatives[0].url;
