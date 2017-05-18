@@ -27,14 +27,19 @@
     methods: {
       getImg(){
         api.getFirstPageImg().then((data) => {
-          this.imgSrc = data.data.creatives[0].url;
+          if (data.data === null || data.data.creatives.length === 0) {
+            this.imgSrc = require("./../assets/startup.jpg");
+          }
+          else {
+            this.imgSrc = data.data.creatives[0].url;
+          }
           this.isLoading = false;
-          this.tips="加载完成~";
+          this.tips = "加载完成~";
           let _timer = setTimeout(() => {
             this.isHide = true;
             clearTimeout(_timer);
             this.$router.push(
-              {path:'home'}
+              {path: 'home'}
             );
           }, 3000);
         }, () => {
@@ -46,7 +51,7 @@
       skip(){
         this.isHide = true;
         this.$router.push(
-          {path:'home'}
+          {path: 'home'}
         );
       }
     },
